@@ -24,7 +24,7 @@ jobs:
 
       - name: Run collector script
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # توکن از سیکرت‌ها
+          GITHUB_TOKEN: ${{ secrets.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 }}  # توکن از سیکرت‌ها
         run: python config_collector.py
 
       - name: Commit and push changes
