@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: '0 */6 * * *'  # هر 6 ساعت
   workflow_dispatch:  # امکان اجرای دستی
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   collect-configs:
@@ -12,7 +16,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: List repository contents
+        run: ls -la  # برای دیباگ: نمایش فایل‌های مخزن
+
+      - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -24,7 +31,7 @@ jobs:
 
       - name: Run collector script
         env:
-          GITHUB_TOKEN: ${{ secrets.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 }}  # توکن از سیکرت‌ها
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # توکن از سیکرت‌ها
         run: python config_collector.py
 
       - name: Commit and push changes
@@ -32,5 +39,5 @@ jobs:
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git add .
-          git commit -m "Update configs $(date)"
+          git commit -m "Update configs $(date)" || echo "No changes to commit"
           git push
