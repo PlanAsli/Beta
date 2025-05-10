@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests beautifulsoup4 dnspython geoip2 gitpython schedule wget
+          pip install requests beautifulsoup4 dnspython geoip2 gitpython schedule wget jdatetime
 
       - name: Run collector script
         env:
