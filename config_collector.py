@@ -245,7 +245,6 @@ TELEGRAM_CHANNELS = [
 
 # منابع خارجی
 EXTERNAL_SOURCES = [
-    {"url": "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/splitted/channels", "type": "telegram_channels", "name": "SoroushMirzaei Channels"},
     {"url": "https://raw.githubusercontent.com/arshiacomplus/v2rayExtractor/refs/heads/main/mix/sub.html", "type": "html", "name": "ArshiaComPlus HTML"},
     {"url": "https://raw.githubusercontent.com/Kwinshadow/TelegramV2rayCollector/refs/heads/main/sublinks/mix.txt", "type": "text", "name": "Kwinshadow Mix"},
     {"url": "https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/refs/heads/main/all_configs.txt", "type": "text", "name": "SoliSpirit Configs"},
