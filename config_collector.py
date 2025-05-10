@@ -58,7 +58,7 @@ TELEGRAM_CHANNELS = [
 # منابع خارجی
 EXTERNAL_SOURCES = [
     {
-        "url": "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/splitted/channels",
+        "url": "https://raw.githubusercontent.com/miladtahanian/V2RayCFGDumper/refs/heads/main/config.txt",
         "type": "telegram_channels",
         "name": "SoroushMirzaei Channels"
     },
