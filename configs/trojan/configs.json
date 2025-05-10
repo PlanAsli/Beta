@@ -1,6 +1,6 @@
 [
     "trojan://telegram-id-directvpn@13.61.114.31:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#TROJAN | tcp | tls | Unknown:443 | Unknown | Closed",
-    "trojan://aTArbZ2F0E@cloudgetservice.mcloudservice.site:443?sni=uSa-vp-27.bLAzECLOUD.SITE&type=ws&host=uSa-vp-27.bLAzECLOUD.SITE&path=/linkvkws#TROJAN | ws | none | 172.67.164.181:80 | Unknown | Open",
+    "trojan://aTArbZ2F0E@cloudgetservice.mcloudservice.site:443?sni=uSa-vp-27.bLAzECLOUD.SITE&type=ws&host=uSa-vp-27.bLAzECLOUD.SITE&path=/linkvkws#TROJAN | ws | none | 104.21.66.223:80 | Unknown | Open",
     "trojan://t2WqbIW2JE@15.204.175.111:2083?path=%2Flinkvws&security=tls&host=usa-vp-111.mETIkaPPs.cOm&type=ws&sni=usa-vp-111.mETIkaPPs.cOm#TROJAN | ws | tls | 15.204.175.111:443 | Unknown | Open",
-    "trojan://aTArbZ2F0E@cloudgetservice.mcloudservice.site:443?sni=uSa-vp-27.bLAzECLOUD.SITE&type=ws&host=uSa-vp-27.bLAzECLOUD.SITE&path=/linkvkws#TROJAN | ws | none | 104.21.66.223:80 | Unknown | Open"
+    "trojan://aTArbZ2F0E@cloudgetservice.mcloudservice.site:443?sni=uSa-vp-27.bLAzECLOUD.SITE&type=ws&host=uSa-vp-27.bLAzECLOUD.SITE&path=/linkvkws#TROJAN | ws | none | 172.67.164.181:80 | Unknown | Open"
 ]
