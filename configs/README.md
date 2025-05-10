@@ -2,7 +2,7 @@
 Systematically collects Vmess, Vless, Shadowsocks, Trojan, Reality, Hysteria, Tuic, and Juicity configurations from Telegram channels. Configurations are categorized by open/closed ports, deduplicated, and enriched with server details (network, security, IP, port, country).
 
 ## Stats
-Last Update: Sat, 20 Ord 1404 16:53:21
+Last Update: Sat, 20 Ord 1404 16:53:53
 Total Configurations: 138
 - Vmess: 9
 - Vless: 64
