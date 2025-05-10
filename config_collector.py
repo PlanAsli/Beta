@@ -22,20 +22,21 @@ import string
 import random
 
 # تنظیمات اولیه
+LOGS_DIR = "logs"
+os.makedirs(LOGS_DIR, exist_ok=True)  # ایجاد پوشه logs قبل از تنظیم لاگ
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(threadName)s - %(message)s',
     handlers=[
-        logging.FileHandler('logs/collector.log'),
+        logging.FileHandler(f'{LOGS_DIR}/collector.log'),
         logging.StreamHandler()
     ]
 )
 TIMEOUT = 10  # ثانیه برای درخواست‌ها
 RETRIES = 3  # تعداد تلاش مجدد
 OUTPUT_DIR = "configs"
-LOGS_DIR = "logs"
-GITHUB_REPO = "PlanAsli/beta"  # جایگزین با نام کاربری و مخزن
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+GITHUB_REPO = "PlanAsli/Beta"  # نام مخزن
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")  # توکن از متغیر محیطی
 GEOIP_DB = "geoip-lite/GeoLite2-Country.mmdb"  # فایل پایگاه داده GeoIP
 UPDATE_INTERVAL = 21600  # به‌روزرسانی هر 6 ساعت (ثانیه)
 COMMON_PORTS = [80, 443, 8080, 8443]  # پورت‌های رایج برای بررسی
@@ -301,8 +302,7 @@ def push_to_github():
 
 # تابع اصلی
 def main():
-    os.makedirs(LOGS_DIR, exist_ok=True)
-    download_geoip_db()
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
     
     # جمع‌آوری تنظیمات
     raw_configs = collect_configs()
