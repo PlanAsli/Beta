@@ -283,17 +283,12 @@ Total Configurations: {len(configs)}
 # آپلود به گیت‌هاب
 def push_to_github():
     try:
-        repo_dir = OUTPUT_DIR
-        if not os.path.exists(os.path.join(repo_dir, ".git")):
-            repo = Repo.init(repo_dir)
-            repo.create_remote('origin', f"https://{GITHUB_TOKEN}@github.com/{GITHUB_REPO}.git")
-        
+        repo_dir = "."  # استفاده از مخزن اصلی به جای configs
         repo = Repo(repo_dir)
         repo.git.add(all=True)
         if repo.is_dirty():
             repo.index.commit(f"Updated configs {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-            origin = repo.remote(name='origin')
-            origin.push()
+            repo.git.push("origin", "main")  # پوش به شاخه main
             logging.info("Successfully pushed to GitHub")
         else:
             logging.info("No changes to commit")
