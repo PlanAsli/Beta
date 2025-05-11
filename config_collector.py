@@ -83,8 +83,8 @@ country_map = {
 TELEGRAM_CHANNELS = [
     "activevshop", "airdroplandcod", "alfred_config", "alienvpn402", "alo_v2rayng",
     "alpha_v2ray_fazayi", "amirinventor2010", "amironetwork", "ana_service", "angus_vpn",
-    # ... (لیست کامل 700+ کانال)
     "zyfxlnn"
+    # ... (لیست کامل 700+ کانال)
 ]
 
 # منابع خارجی
@@ -165,7 +165,6 @@ def check_port(host, port, timeout=2):
 def resolve_domain(domain):
     if domain in dns_cache:
         return dns_cache[domain]
-    # فیلتر دامنه‌های معتبر
     if not re.match(VALID_DOMAIN_REGEX, domain):
         logging.debug(f"Invalid domain skipped: {domain}")
         dns_cache[domain] = domain
@@ -278,27 +277,39 @@ def parse_and_enrich_config(config):
     try:
         protocol = next((p for p in PROTOCOLS if config.startswith(f"{p}://")), None)
         if not protocol:
+            logging.debug(f"Invalid protocol for config: {config[:50]}...")
             return None
+        
         decoded = config
         if protocol in ["vmess", "ss"]:
             try:
-                decoded = base64.b64decode(config.split("://")[1].split("#")[0]).decode('utf-8')
-            except:
+                encoded_part = config.split("://")[1].split("#")[0]
+                decoded = base64.b64decode(encoded_part + "=" * (-len(encoded_part) % 4)).decode('utf-8')
+            except Exception as e:
+                logging.debug(f"Base64 decode failed for {config[:50]}...: {e}")
                 decoded = config
         
-        host_match = re.search(r'host=([\w\.-]+)|address=([\w\.-]+)', decoded)
-        port_match = re.search(r'port=(\d+)', decoded)
+        # استخراج host و port
+        host_match = re.search(r'host=([\w\.-]+)|address=([\w\.-]+)|@([\w\.-]+)', decoded)
+        port_match = re.search(r'port=(\d+)|:(\d+)', decoded)
         network_match = re.search(r'network=(\w+)|type=(\w+)', decoded)
         
-        host = next((g for g in host_match.groups() if g), "Unknown") if host_match else "Unknown"
-        port = int(port_match.group(1)) if port_match else 443
+        host = next((g for g in host_match.groups() if g), None) if host_match else None
+        port = int(next((g for g in port_match.groups() if g), "443")) if port_match else 443
         network = next((g for g in network_match.groups() if g), "tcp") if network_match else "tcp"
+        
+        if not host:
+            logging.debug(f"No valid host found for config: {config[:50]}...")
+            return None
+        
         if protocol == "reality":
             network = "reality_tcp"
         
         ip = resolve_domain(host)
         if ip == host:  # یعنی DNS resolve نشده
-            return None  # کانفیگ نامعتبر
+            logging.debug(f"DNS resolve failed for {host} in config: {config[:50]}...")
+            return None
+        
         ipinfo = get_ipinfo(ip)
         country = ipinfo["country"]
         
@@ -330,23 +341,16 @@ def remove_duplicates(configs):
     start_time = time.time()
     valid_configs = 0
     
-    # فیلتر اولیه
+    # فیلتر اولیه برای حذف تکراری‌ها
     configs = list(set(configs))
     logging.info(f"After initial deduplication: {len(configs)} configs")
     
-    # فیلتر کانفیگ‌های معتبر
-    filtered_configs = []
-    for config in configs:
-        if re.search(r'(host|address)=[\w\.-]+', config) and re.search(r'port=\d+', config):
-            filtered_configs.append(config)
-    logging.info(f"After validity filter: {len(filtered_configs)} configs")
-    
     # پردازش موازی
     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-        future_to_config = {executor.submit(parse_and_enrich_config, config): config for config in filtered_configs[:5000]}
+        future_to_config = {executor.submit(parse_and_enrich_config, config): config for config in configs[:5000]}
         for i, future in enumerate(concurrent.futures.as_completed(future_to_config)):
             if i % 100 == 0 and i > 0:
-                logging.info(f"Processed {i}/{len(filtered_configs[:5000])} configs, valid: {valid_configs}, time: {time.time() - start_time:.2f}s")
+                logging.info(f"Processed {i}/{len(configs[:5000])} configs, valid: {valid_configs}, time: {time.time() - start_time:.2f}s")
             if parsed := future.result():
                 valid_configs += 1
                 key = f"{parsed['protocol']}-{parsed['ip']}:{parsed['port']}"
