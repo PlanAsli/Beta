@@ -23,10 +23,10 @@ import subprocess
 LOGS_DIR = "logs"
 os.makedirs(LOGS_DIR, exist_ok=True)
 logging.basicConfig(
-    level=logging.DEBUG,  # تغییر به DEBUG برای ریشه‌یابی
+    level=logging.DEBUG,  # اطمینان از سطح DEBUG
     format='%(asctime)s - %(levelname)s - %(threadName)s - %(message)s',
     handlers=[
-        logging.FileHandler(f'{LOGS_DIR}/collector.log'),
+        logging.FileHandler(f'{LOGS_DIR}/collector.log', encoding='utf-8'),
         logging.StreamHandler()
     ]
 )
@@ -54,7 +54,7 @@ server_counter = 0
 COUNTRY_FLAGS = {
     "US": "🇺🇸", "DE": "🇩🇪", "GB": "🇬🇧", "FR": "🇫🇷", "CA": "🇨🇦", "NL": "🇳🇱",
     "AU": "🇦🇺", "JP": "🇯🇵", "CN": "🇨🇳", "RU": "🇷🇺", "BR": "🇧🇷", "IN": "🇮🇳",
-    "Unknown": "🌐"
+    "HK": "🇭🇰", "Unknown": "🌐"
 }
 
 def load_cache():
@@ -82,16 +82,16 @@ def save_cache():
 
 def load_filters():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--ports", type=str, default="")  # خالی یعنی همه پورت‌ها
+    parser.add_argument("--ports", type=str, default="")  # بدون فیلتر پورت
     parser.add_argument("--countries", type=str, default="")
     parser.add_argument("--protocols", type=str, default=",".join(PROTOCOLS))
-    parser.add_argument("--networks", type=str, default=",".join(NETWORKS))
+    parser.add_argument("--networks", type=str, default="")  # بدون فیلتر شبکه
     args = parser.parse_args()
     return {
-        "ports": set(map(int, args.ports.split(","))) if args.ports else set(),  # خالی یعنی بدون فیلتر
+        "ports": set(map(int, args.ports.split(","))) if args.ports else set(),
         "countries": set(args.countries.split(",")) if args.countries else set(),
         "protocols": set(args.protocols.split(",")),
-        "networks": set(args.networks.split(","))
+        "networks": set(args.networks.split(",")) if args.networks else set()
     }
 
 # دیکشنری‌های فال‌بک
@@ -145,7 +145,6 @@ EXTERNAL_SOURCES = [
     {"url": "https://raw.githubusercontent.com/Ashkan-m/v2ray/main/Sub.txt", "type": "text", "name": "Ashkan-m Sub"},
     {"url": "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/row-url/actives.txt", "type": "text", "name": "MrMohebi Actives"},
     {"url": "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/row-url/all.txt", "type": "text", "name": "MrMohebi All"},
-    # منابع جدید برای Hysteria و Reality
     {"url": "https://raw.githubusercontent.com/HyNetwork/hysteria/master/configs.txt", "type": "text", "name": "HyNetwork Hysteria"},
     {"url": "https://raw.githubusercontent.com/xray/reality-configs/main/reality.txt", "type": "text", "name": "Xray Reality Configs"}
 ]
@@ -185,8 +184,10 @@ def check_port(host, port, timeout=2):
         sock.settimeout(timeout)
         result = sock.connect_ex((host, port))
         sock.close()
+        logging.debug(f"Port check for {host}:{port}: {'open' if result == 0 else 'closed'}")
         return result == 0
-    except:
+    except Exception as e:
+        logging.debug(f"Port check failed for {host}:{port}: {e}")
         return False
 
 def resolve_domain(domain, retries=3):
@@ -194,7 +195,7 @@ def resolve_domain(domain, retries=3):
         logging.debug(f"Using cached DNS for {domain}: {dns_cache[domain]['ip']}")
         return dns_cache[domain]["ip"]
     if not re.match(VALID_DOMAIN_REGEX, domain):
-        logging.debug(f"Invalid domain skipped: {domain}")
+        logging.debug(f"Invalid domain, using as IP: {domain}")
         dns_cache[domain] = {"ip": domain, "timestamp": time.time()}
         return domain
     for attempt in range(retries):
@@ -250,28 +251,16 @@ def get_ipinfo(ip, retries=3):
         logging.debug(f"GeoIP fallback failed for {ip}, using default: {country_map['default']}")
         return geoip_cache[ip]["data"]
 
-def validate_server(ip, port, skip_port_check=False):
+def validate_server(ip, port, skip_port_check=True):  # پیش‌فرض skip
     if skip_port_check:
         logging.debug(f"Skipping port check for {ip}:{port}")
         return True, port
     is_open = check_port(ip, port)
-    logging.debug(f"Port check for {ip}:{port}: {'open' if is_open else 'closed'}")
     return is_open, port
 
 def test_config(config):
-    # موقتاً غیرفعال تا مشکل اصلی حل بشه
     logging.debug(f"Skipping config test for {config['config'][:50]}...")
     return True
-    # try:
-    #     config_json = {"outbounds": [{"protocol": config["protocol"], "settings": {"address": config["ip"], "port": config["port"]}}]}
-    #     with open("temp_config.json", "w") as f:
-    #         json.dump(config_json, f)
-    #     result = subprocess.run(["v2ray", "run", "-c", "temp_config.json"], timeout=5, capture_output=True)
-    #     logging.debug(f"Config test for {config['config'][:50]}...: {'passed' if result.returncode == 0 else 'failed'}")
-    #     return result.returncode == 0
-    # except Exception as e:
-    #     logging.debug(f"Config test failed: {e}")
-    #     return False
 
 def extract_configs(channel):
     configs = []
@@ -317,7 +306,7 @@ def extract_configs_from_source(source):
                             text = element.text.strip()
                             for proto in PROTOCOLS:
                                 matches = re.findall(PATTERNS.get(proto, r''), text)
-                                configs.extend(matches)
+                                configs.extend([match for match in matches if match])
                 elif source_type == "text":
                     lines = response.text.strip().splitlines()
                     for line in lines:
@@ -325,7 +314,7 @@ def extract_configs_from_source(source):
                             if line.startswith(f"{proto}://"):
                                 configs.append(line.strip())
                 logging.info(f"Extracted {len(configs)} configs from {source_name}")
-                return configs
+                return [(config, source_name) for config in configs]  # اضافه کردن منبع
             else:
                 logging.warning(f"Failed to fetch {url}: {response.status_code}")
         except requests.RequestException as e:
@@ -334,16 +323,17 @@ def extract_configs_from_source(source):
     logging.error(f"All attempts failed for {url}")
     return []
 
-def parse_and_enrich_config(config, filters):
+def parse_and_enrich_config(config_tuple, filters):
     global server_counter
+    config, source_name = config_tuple
     try:
-        logging.debug(f"Parsing config: {config[:50]}...")
+        logging.debug(f"Parsing config from {source_name}: {config[:50]}...")
         protocol = next((p for p in PROTOCOLS if config.startswith(f"{p}://")), None)
         if not protocol:
-            logging.debug(f"No protocol matched for config: {config[:50]}...")
+            logging.debug(f"No protocol matched for config from {source_name}: {config[:50]}...")
             return None
         if protocol not in filters["protocols"]:
-            logging.debug(f"Protocol {protocol} filtered out for config: {config[:50]}...")
+            logging.debug(f"Protocol {protocol} filtered out for config from {source_name}: {config[:50]}...")
             return None
         
         decoded = config
@@ -351,32 +341,32 @@ def parse_and_enrich_config(config, filters):
             try:
                 encoded_part = config.split("://")[1].split("#")[0]
                 decoded = base64.b64decode(encoded_part + "=" * (-len(encoded_part) % 4)).decode('utf-8')
-                logging.debug(f"Decoded {protocol} config: {decoded[:50]}...")
+                logging.debug(f"Decoded {protocol} config from {source_name}: {decoded[:50]}...")
             except Exception as e:
-                logging.debug(f"Base64 decode failed for {config[:50]}...: {e}")
+                logging.debug(f"Base64 decode failed for config from {source_name}: {config[:50]}...: {e}")
                 decoded = config
         
-        # استخراج host و port با regex عمومی‌تر
-        host_match = re.search(r'(?:host|address|@|server)=?([\w\.-]+)|([\w\.-]+)(?::\d+)', decoded)
-        port_match = re.search(r'(?:port|=|:)(\d+)', decoded)
+        # استخراج host و port با regex بازتر
+        host_match = re.search(r'(?:host|address|@|server)=?([\w\.-]+)|([\w\.-]+)(?::\d+|$)|([\d\.]+)', decoded)
+        port_match = re.search(r'(?:port|=|:)(\d+)|[\w\.-]+:(\d+)', decoded)
         network_match = re.search(r'(?:network|type)=(\w+)', decoded)
         
         host = next((g for g in host_match.groups() if g), None) if host_match else None
         port = int(next((g for g in port_match.groups() if g), "443")) if port_match else 443
         network = next((g for g in network_match.groups() if g), "tcp") if network_match else "tcp"
         
-        logging.debug(f"Extracted: host={host}, port={port}, network={network}")
+        logging.debug(f"Extracted from {source_name}: host={host}, port={port}, network={network}")
         
         if not host:
-            logging.debug(f"No valid host for config: {config[:50]}...")
+            logging.debug(f"No valid host for config from {source_name}: {config[:50]}...")
             return None
         
         if filters["ports"] and port not in filters["ports"]:
-            logging.debug(f"Port {port} filtered out for config: {config[:50]}...")
+            logging.debug(f"Port {port} filtered out for config from {source_name}: {config[:50]}...")
             return None
         
         if filters["networks"] and network not in filters["networks"]:
-            logging.debug(f"Network {network} filtered out for config: {config[:50]}...")
+            logging.debug(f"Network {network} filtered out for config from {source_name}: {config[:50]}...")
             return None
         
         if protocol == "reality":
@@ -384,20 +374,20 @@ def parse_and_enrich_config(config, filters):
         
         ip = resolve_domain(host)
         if ip == host:
-            logging.debug(f"DNS resolve failed for {host} in config: {config[:50]}...")
-            return None
+            logging.debug(f"DNS resolve failed for {host} in config from {source_name}, using host as IP")
+            ip = host  # فال‌بک
         
         ipinfo = get_ipinfo(ip)
         country = ipinfo["country"]
         if filters["countries"] and country not in filters["countries"]:
-            logging.debug(f"Country {country} filtered out for config: {config[:50]}...")
+            logging.debug(f"Country {country} filtered out for config from {source_name}: {config[:50]}...")
             return None
         
         # شماره‌گذاری سرور
         server_counter += 1
         server_name = f"Server {server_counter}"
         
-        is_port_open, open_port = validate_server(ip, port, skip_port_check=os.getenv("SKIP_PORT_CHECK", "false").lower() == "true")
+        is_port_open, open_port = validate_server(ip, port, skip_port_check=True)
         
         # پرچم کشور
         flag = COUNTRY_FLAGS.get(country, COUNTRY_FLAGS["Unknown"])
@@ -412,16 +402,17 @@ def parse_and_enrich_config(config, filters):
             "port": open_port,
             "is_port_open": is_port_open,
             "network": network,
-            "country": country
+            "country": country,
+            "source": source_name
         }
         
         if is_port_open and not test_config(parsed):
             parsed["is_port_open"] = False
         
-        logging.debug(f"Parsed config successfully: {title}")
+        logging.debug(f"Parsed config successfully from {source_name}: {title}")
         return parsed
     except Exception as e:
-        logging.debug(f"Error parsing config {config[:50]}...: {e}")
+        logging.debug(f"Error parsing config from {source_name}: {config[:50]}...: {e}")
         return None
 
 def remove_duplicates(configs, filters):
@@ -431,11 +422,11 @@ def remove_duplicates(configs, filters):
     start_time = time.time()
     valid_configs = 0
     
-    configs = list(set(configs))
+    configs = list(set(config_tuple[0] for config_tuple in configs))
     logging.info(f"After initial deduplication: {len(configs)} configs")
     
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
-        future_to_config = {executor.submit(parse_and_enrich_config, config, filters): config for config in configs}
+        future_to_config = {executor.submit(parse_and_enrich_config, config_tuple, filters): config_tuple for config_tuple in configs}
         for i, future in enumerate(concurrent.futures.as_completed(future_to_config)):
             if i % 100 == 0 and i > 0:
                 logging.info(f"Processed {i}/{len(configs)} configs, valid: {valid_configs}, time: {time.time() - start_time:.2f}s")
@@ -456,7 +447,7 @@ def collect_configs():
         for future in concurrent.futures.as_completed(future_to_channel):
             channel = future_to_channel[future]
             try:
-                configs.extend(future.result())
+                configs.extend([(config, channel) for config in future.result()])
             except Exception as e:
                 logging.error(f"Error collecting from {channel}: {e}")
     
@@ -477,6 +468,64 @@ def save_configs(configs):
     protocol_configs = defaultdict(lambda: defaultdict(lambda: {"open": [], "all": []}))
     tcp_configs = []
     
+    for parsed in configs:
+        protocol = parsed["protocol"]
+        network = parsed["network"]
+        config_text = parsed["config"]
+        is_open = parsed["is_port_open"]
+        
+        protocol_configs[protocol][network]["all"].append(config_text)
+        if is_open:
+            protocol_configs[protocol][network]["open"].append(config_text)
+        
+        if network in ["tcp", "reality_tcp"]:
+            tcp_configs.append(config_text)
+    
+    for protocol in PROTOCOLS:
+        for network in NETWORKS:
+            protocol_dir = os.path.join(OUTPUT_DIR, protocol, network)
+            os.makedirs(protocol_dir, exist_ok=True)
+            
+            configs_all = protocol_configs[protocol][network]["all"]
+            if configs_all:
+                with open(os.path.join(protocol_dir, "all_configs.txt"), "w", encoding="utf-8") as f:
+                    f.write("\n".join(configs_all) + "\n")
+                with open(os.path.join(protocol_dir, "all_configs_base64.txt"), "w", encoding="utf-8") as f:
+                    f.write(base64.b64encode("\n".join(configs_all).encode("utf-8")).decode("utf-8"))
+                with open(os.path.join(protocol_dir, "configs.json"), "w", encoding="utf-8") as f:
+                    json.dump(configs_all, f, indent=4, ensure_ascii=False)
+            
+            configs_open = protocol_configs[protocol][network]["open"]
+            if configs_open:
+                with open(os.path.join(protocol_dir, "open_configs.txt"), "w", encoding="utf-8") as f:
+                    f.write("\n".join(configs_open) + "\n")
+    
+    mix_dir = os.path.join(OUTPUT_DIR, "mix")
+    os.makedirs(mix_dir, exist_ok=True)
+    
+    all_configs = [parsed["config"] for parsed in configs]
+    with open(os.path.join(mix_dir, "all_configs.txt"), "w", encoding="utf-8") as f:
+        f.write("\n".join(all_configs) + "\n")
+    with open(os.path.join(mix_dir, "all_configs_base64.txt"), "w", encoding="utf-8") as f:
+        f.write(base64.b64encode("\n".join(all_configs).encode("utf-8")).decode("utf-8"))
+    with open(os.path.join(mix_dir, "all_configs.json"), "w", encoding="utf-8") as f:
+        json.dump(all_configs, f, indent=4, ensure_ascii=False)
+    
+    tcp_dir = os.path.join(OUTPUT_DIR, "tcp")
+    os.makedirs(tcp_dir, exist_ok=True)
+    
+    if tcp_configs:
+        with open(os.path.join(tcp_dir, "all_configs.txt"), "w", encoding="utf-8") as f:
+            f.write("\n".join(tcp_configs) + "\n")
+        with open(os.path.join(tcp_dir, "all_configs_base64.txt"), "w", encoding="utf-8") as f:
+            f.write(base64.b64encode("\n".join(tcp_configs).encode("utf-8")).decode("utf-8"))
+        with open(os.path.join(tcp_dir, "all_configs.json"), "w", encoding="utf-8") as f:
+            json.dump(tcp_configs, f, indent=4, ensure_ascii=False)
+
+def generate_readme(parsed_configs):
+    stats = defaultdict(int)
+    country_stats = defaultdict(int)
+    open_stats = defaultdict(int)
     for parsed in configs:
         protocol = parsed["protocol"]
         network = parsed["network"]
