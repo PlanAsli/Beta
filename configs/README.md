@@ -3,15 +3,15 @@
 🌐 Collects Vmess, Vless, Shadowsocks, Trojan, Reality, Hysteria, Tuic, and Juicity configurations from Telegram and external sources. Configurations are deduplicated and enriched with server details.
 
 ## 📊 Stats
-**Last Update**: 1404/02/21 08:10:54  
-**Total Configurations**: 324
+**Last Update**: 1404/02/21 08:12:01  
+**Total Configurations**: 326
 
 | Protocol | Count |
 |:--------:|:-----:|
 | Vmess | 1 |
-| Vless | 222 |
-| Trojan | 18 |
-| Ss | 83 |
+| Vless | 223 |
+| Trojan | 20 |
+| Ss | 82 |
 | Reality | 0 |
 | Hysteria | 0 |
 | Tuic | 0 |
@@ -58,14 +58,13 @@
 |:--------:|:-------:|:----:|:-----:|
 | Vmess | ws | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/vmess/ws/open_configs.txt) | 1 |
 | Vless | tcp | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/vless/tcp/open_configs.txt) | 44 |
-| Vless | ws | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/vless/ws/open_configs.txt) | 87 |
-| Vless | grpc | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/vless/grpc/open_configs.txt) | 60 |
-| Trojan | tcp | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/trojan/tcp/open_configs.txt) | 13 |
-| Trojan | ws | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/trojan/ws/open_configs.txt) | 2 |
-| Trojan | grpc | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/trojan/grpc/open_configs.txt) | 1 |
-| Ss | tcp | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/ss/tcp/open_configs.txt) | 32 |
-| Ss | ws | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/ss/ws/open_configs.txt) | 29 |
-| Ss | grpc | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/ss/grpc/open_configs.txt) | 19 |
+| Vless | ws | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/vless/ws/open_configs.txt) | 86 |
+| Vless | grpc | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/vless/grpc/open_configs.txt) | 68 |
+| Trojan | tcp | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/trojan/tcp/open_configs.txt) | 17 |
+| Trojan | ws | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/trojan/ws/open_configs.txt) | 1 |
+| Ss | tcp | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/ss/tcp/open_configs.txt) | 42 |
+| Ss | ws | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/ss/ws/open_configs.txt) | 21 |
+| Ss | grpc | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/ss/grpc/open_configs.txt) | 14 |
 
 ## 🚀 How to Use
 1. Download a VPN client (e.g., [v2rayNG](https://github.com/2dust/v2rayNG)).
