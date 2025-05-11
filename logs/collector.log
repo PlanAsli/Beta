@@ -2512,3 +2512,313 @@
 2025-05-11 08:28:10,695 - INFO - MainThread - Successfully pushed to GitHub
 2025-05-11 08:28:10,696 - INFO - MainThread - Pushed to GitHub in 0.76 seconds
 2025-05-11 08:28:10,697 - INFO - MainThread - Saved cache: 7786 DNS, 339 GeoIP entries
+2025-05-11 08:28:30,337 - INFO - MainThread - Loaded cache: 7786 DNS, 339 GeoIP entries
+2025-05-11 08:28:30,973 - INFO - ThreadPoolExecutor-0_0 - Extracted 0 configs from activevshop
+2025-05-11 08:28:31,135 - INFO - ThreadPoolExecutor-0_1 - Extracted 0 configs from airdroplandcod
+2025-05-11 08:28:31,514 - INFO - ThreadPoolExecutor-0_0 - Extracted 3 configs from alfred_config
+2025-05-11 08:28:31,745 - INFO - ThreadPoolExecutor-0_1 - Extracted 1 configs from alienvpn402
+2025-05-11 08:28:32,058 - INFO - ThreadPoolExecutor-0_0 - Extracted 6 configs from alo_v2rayng
+2025-05-11 08:28:32,204 - INFO - ThreadPoolExecutor-0_1 - Extracted 0 configs from alpha_v2ray_fazayi
+2025-05-11 08:28:32,764 - INFO - ThreadPoolExecutor-0_0 - Extracted 2 configs from amirinventor2010
+2025-05-11 08:28:32,821 - INFO - ThreadPoolExecutor-0_1 - Extracted 0 configs from amironetwork
+2025-05-11 08:28:33,460 - INFO - ThreadPoolExecutor-0_1 - Extracted 4 configs from angus_vpn
+2025-05-11 08:28:33,509 - INFO - ThreadPoolExecutor-0_0 - Extracted 0 configs from ana_service
+2025-05-11 08:28:34,140 - INFO - ThreadPoolExecutor-0_1 - Extracted 0 configs from zyfxlnn
+2025-05-11 08:28:34,314 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from ArshiaComPlus HTML
+2025-05-11 08:28:34,355 - INFO - ThreadPoolExecutor-1_1 - Extracted 74 configs from Kwinshadow Mix
+2025-05-11 08:28:34,832 - INFO - ThreadPoolExecutor-1_0 - Extracted 16364 configs from SoliSpirit Configs
+2025-05-11 08:28:34,841 - INFO - ThreadPoolExecutor-1_1 - Extracted 1957 configs from MiladTahanian Configs
+2025-05-11 08:28:35,014 - INFO - ThreadPoolExecutor-1_0 - Extracted 2 configs from Everyday VPN Main
+2025-05-11 08:28:35,039 - INFO - ThreadPoolExecutor-1_1 - Extracted 7 configs from Everyday VPN Test
+2025-05-11 08:28:35,077 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from Epodonios Vless
+2025-05-11 08:28:35,119 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from Epodonios Trojan
+2025-05-11 08:28:35,157 - INFO - ThreadPoolExecutor-1_1 - Extracted 448 configs from Epodonios Vmess
+2025-05-11 08:28:35,159 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from Epodonios SS
+2025-05-11 08:28:35,292 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from Qjlxg Socks
+2025-05-11 08:28:35,382 - INFO - ThreadPoolExecutor-1_1 - Extracted 0 configs from Qjlxg Vless
+2025-05-11 08:28:35,432 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from Qjlxg Trojan
+2025-05-11 08:28:35,623 - INFO - ThreadPoolExecutor-1_1 - Extracted 0 configs from Qjlxg Hy2
+2025-05-11 08:28:35,631 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from Qjlxg Hysteria
+2025-05-11 08:28:35,801 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from Surfboard Hysteria2
+2025-05-11 08:28:35,810 - INFO - ThreadPoolExecutor-1_1 - Extracted 0 configs from Surfboard Hy2
+2025-05-11 08:28:35,975 - INFO - ThreadPoolExecutor-1_0 - Extracted 4 configs from Surfboard Hysteria
+2025-05-11 08:28:36,052 - INFO - ThreadPoolExecutor-1_1 - Extracted 0 configs from Surfboard Vless
+2025-05-11 08:28:36,117 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from Surfboard Vmess
+2025-05-11 08:28:36,223 - INFO - ThreadPoolExecutor-1_1 - Extracted 54 configs from Surfboard UDP
+2025-05-11 08:28:36,242 - INFO - ThreadPoolExecutor-1_0 - Extracted 409 configs from Surfboard WSTLS
+2025-05-11 08:28:36,338 - INFO - ThreadPoolExecutor-1_1 - Extracted 100 configs from Surfboard Random
+2025-05-11 08:28:36,459 - INFO - ThreadPoolExecutor-1_0 - Extracted 3405 configs from Surfboard Converted
+2025-05-11 08:28:36,510 - INFO - ThreadPoolExecutor-1_1 - Extracted 185 configs from Surfboard Mahsa
+2025-05-11 08:28:36,629 - INFO - ThreadPoolExecutor-1_1 - Extracted 150 configs from Roosterkid V2RAY
+2025-05-11 08:28:36,681 - INFO - ThreadPoolExecutor-1_0 - Extracted 563 configs from MhdiTaheri Mix
+2025-05-11 08:28:36,837 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from ALIILAPRO Sub
+2025-05-11 08:28:36,996 - INFO - ThreadPoolExecutor-1_1 - Extracted 2101 configs from MhdiTaheri Sub Mix
+2025-05-11 08:28:37,014 - INFO - ThreadPoolExecutor-1_0 - Extracted 75 configs from Ashkan-m Sub
+2025-05-11 08:28:37,046 - INFO - ThreadPoolExecutor-1_0 - Extracted 379 configs from MrMohebi All
+2025-05-11 08:28:37,160 - INFO - ThreadPoolExecutor-1_1 - Extracted 77 configs from MrMohebi Actives
+2025-05-11 08:28:37,190 - WARNING - ThreadPoolExecutor-1_0 - Failed to fetch https://raw.githubusercontent.com/hysteria-configs/repo/main/hysteria.txt: 404
+2025-05-11 08:28:37,220 - WARNING - ThreadPoolExecutor-1_0 - Failed to fetch https://raw.githubusercontent.com/hysteria-configs/repo/main/hysteria.txt: 404
+2025-05-11 08:28:37,250 - WARNING - ThreadPoolExecutor-1_0 - Failed to fetch https://raw.githubusercontent.com/hysteria-configs/repo/main/hysteria.txt: 404
+2025-05-11 08:28:37,250 - ERROR - ThreadPoolExecutor-1_0 - All attempts failed for https://raw.githubusercontent.com/hysteria-configs/repo/main/hysteria.txt
+2025-05-11 08:28:37,359 - WARNING - ThreadPoolExecutor-1_1 - Failed to fetch https://raw.githubusercontent.com/reality-vpn/configs/main/reality.txt: 404
+2025-05-11 08:28:37,391 - WARNING - ThreadPoolExecutor-1_1 - Failed to fetch https://raw.githubusercontent.com/reality-vpn/configs/main/reality.txt: 404
+2025-05-11 08:28:37,421 - WARNING - ThreadPoolExecutor-1_1 - Failed to fetch https://raw.githubusercontent.com/reality-vpn/configs/main/reality.txt: 404
+2025-05-11 08:28:37,421 - ERROR - ThreadPoolExecutor-1_1 - All attempts failed for https://raw.githubusercontent.com/reality-vpn/configs/main/reality.txt
+2025-05-11 08:28:37,421 - INFO - MainThread - Raw configs: 26370
+2025-05-11 08:28:37,422 - INFO - MainThread - Collected raw configs in 7.08 seconds
+2025-05-11 08:28:37,431 - INFO - MainThread - After initial deduplication: 25078 configs
+2025-05-11 08:28:38,700 - INFO - MainThread - Processed 100/25078 configs, valid: 0, time: 1.28s
+2025-05-11 08:28:38,741 - INFO - MainThread - Processed 200/25078 configs, valid: 0, time: 1.32s
+2025-05-11 08:28:38,752 - INFO - MainThread - Processed 300/25078 configs, valid: 0, time: 1.33s
+2025-05-11 08:28:38,752 - INFO - MainThread - Processed 400/25078 configs, valid: 0, time: 1.33s
+2025-05-11 08:28:38,753 - INFO - MainThread - Processed 500/25078 configs, valid: 0, time: 1.33s
+2025-05-11 08:28:38,753 - INFO - MainThread - Processed 600/25078 configs, valid: 0, time: 1.33s
+2025-05-11 08:28:38,753 - INFO - MainThread - Processed 700/25078 configs, valid: 0, time: 1.33s
+2025-05-11 08:28:38,753 - INFO - MainThread - Processed 800/25078 configs, valid: 0, time: 1.33s
+2025-05-11 08:28:38,754 - INFO - MainThread - Processed 900/25078 configs, valid: 0, time: 1.33s
+2025-05-11 08:28:38,754 - INFO - MainThread - Processed 1000/25078 configs, valid: 0, time: 1.33s
+2025-05-11 08:28:38,754 - INFO - MainThread - Processed 1100/25078 configs, valid: 0, time: 1.33s
+2025-05-11 08:28:38,754 - INFO - MainThread - Processed 1200/25078 configs, valid: 0, time: 1.33s
+2025-05-11 08:28:38,755 - INFO - MainThread - Processed 1300/25078 configs, valid: 0, time: 1.33s
+2025-05-11 08:28:38,755 - INFO - MainThread - Processed 1400/25078 configs, valid: 0, time: 1.33s
+2025-05-11 08:28:38,755 - INFO - MainThread - Processed 1500/25078 configs, valid: 0, time: 1.33s
+2025-05-11 08:28:38,756 - INFO - MainThread - Processed 1600/25078 configs, valid: 0, time: 1.33s
+2025-05-11 08:28:38,756 - INFO - MainThread - Processed 1700/25078 configs, valid: 0, time: 1.33s
+2025-05-11 08:28:38,756 - INFO - MainThread - Processed 1800/25078 configs, valid: 0, time: 1.33s
+2025-05-11 08:28:38,757 - INFO - MainThread - Processed 1900/25078 configs, valid: 0, time: 1.33s
+2025-05-11 08:28:38,757 - INFO - MainThread - Processed 2000/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,757 - INFO - MainThread - Processed 2100/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,758 - INFO - MainThread - Processed 2200/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,758 - INFO - MainThread - Processed 2300/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,758 - INFO - MainThread - Processed 2400/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,759 - INFO - MainThread - Processed 2500/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,759 - INFO - MainThread - Processed 2600/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,759 - INFO - MainThread - Processed 2700/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,760 - INFO - MainThread - Processed 2800/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,760 - INFO - MainThread - Processed 2900/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,760 - INFO - MainThread - Processed 3000/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,760 - INFO - MainThread - Processed 3100/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,761 - INFO - MainThread - Processed 3200/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,761 - INFO - MainThread - Processed 3300/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,761 - INFO - MainThread - Processed 3400/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,762 - INFO - MainThread - Processed 3500/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,762 - INFO - MainThread - Processed 3600/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,762 - INFO - MainThread - Processed 3700/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,763 - INFO - MainThread - Processed 3800/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,763 - INFO - MainThread - Processed 3900/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,763 - INFO - MainThread - Processed 4000/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,763 - INFO - MainThread - Processed 4100/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,764 - INFO - MainThread - Processed 4200/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,764 - INFO - MainThread - Processed 4300/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,764 - INFO - MainThread - Processed 4400/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,765 - INFO - MainThread - Processed 4500/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,765 - INFO - MainThread - Processed 4600/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,765 - INFO - MainThread - Processed 4700/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,765 - INFO - MainThread - Processed 4800/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,766 - INFO - MainThread - Processed 4900/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,766 - INFO - MainThread - Processed 5000/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,766 - INFO - MainThread - Processed 5100/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,767 - INFO - MainThread - Processed 5200/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,767 - INFO - MainThread - Processed 5300/25078 configs, valid: 0, time: 1.34s
+2025-05-11 08:28:38,767 - INFO - MainThread - Processed 5400/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,768 - INFO - MainThread - Processed 5500/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,768 - INFO - MainThread - Processed 5600/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,768 - INFO - MainThread - Processed 5700/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,769 - INFO - MainThread - Processed 5800/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,769 - INFO - MainThread - Processed 5900/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,769 - INFO - MainThread - Processed 6000/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,770 - INFO - MainThread - Processed 6100/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,770 - INFO - MainThread - Processed 6200/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,770 - INFO - MainThread - Processed 6300/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,770 - INFO - MainThread - Processed 6400/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,771 - INFO - MainThread - Processed 6500/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,771 - INFO - MainThread - Processed 6600/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,771 - INFO - MainThread - Processed 6700/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,772 - INFO - MainThread - Processed 6800/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,772 - INFO - MainThread - Processed 6900/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,772 - INFO - MainThread - Processed 7000/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,772 - INFO - MainThread - Processed 7100/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,773 - INFO - MainThread - Processed 7200/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,773 - INFO - MainThread - Processed 7300/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,773 - INFO - MainThread - Processed 7400/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,774 - INFO - MainThread - Processed 7500/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,774 - INFO - MainThread - Processed 7600/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,774 - INFO - MainThread - Processed 7700/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,774 - INFO - MainThread - Processed 7800/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,775 - INFO - MainThread - Processed 7900/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,775 - INFO - MainThread - Processed 8000/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,775 - INFO - MainThread - Processed 8100/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,776 - INFO - MainThread - Processed 8200/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,776 - INFO - MainThread - Processed 8300/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,776 - INFO - MainThread - Processed 8400/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,776 - INFO - MainThread - Processed 8500/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,777 - INFO - MainThread - Processed 8600/25078 configs, valid: 0, time: 1.35s
+2025-05-11 08:28:38,777 - INFO - MainThread - Processed 8700/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,777 - INFO - MainThread - Processed 8800/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,777 - INFO - MainThread - Processed 8900/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,778 - INFO - MainThread - Processed 9000/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,778 - INFO - MainThread - Processed 9100/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,778 - INFO - MainThread - Processed 9200/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,778 - INFO - MainThread - Processed 9300/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,779 - INFO - MainThread - Processed 9400/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,779 - INFO - MainThread - Processed 9500/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,779 - INFO - MainThread - Processed 9600/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,780 - INFO - MainThread - Processed 9700/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,780 - INFO - MainThread - Processed 9800/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,780 - INFO - MainThread - Processed 9900/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,780 - INFO - MainThread - Processed 10000/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,781 - INFO - MainThread - Processed 10100/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,781 - INFO - MainThread - Processed 10200/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,781 - INFO - MainThread - Processed 10300/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,782 - INFO - MainThread - Processed 10400/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,782 - INFO - MainThread - Processed 10500/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,782 - INFO - MainThread - Processed 10600/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,783 - INFO - MainThread - Processed 10700/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,783 - INFO - MainThread - Processed 10800/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,783 - INFO - MainThread - Processed 10900/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,784 - INFO - MainThread - Processed 11000/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,784 - INFO - MainThread - Processed 11100/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,784 - INFO - MainThread - Processed 11200/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,785 - INFO - MainThread - Processed 11300/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,785 - INFO - MainThread - Processed 11400/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,785 - INFO - MainThread - Processed 11500/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,786 - INFO - MainThread - Processed 11600/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,786 - INFO - MainThread - Processed 11700/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,786 - INFO - MainThread - Processed 11800/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,787 - INFO - MainThread - Processed 11900/25078 configs, valid: 0, time: 1.36s
+2025-05-11 08:28:38,787 - INFO - MainThread - Processed 12000/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,787 - INFO - MainThread - Processed 12100/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,788 - INFO - MainThread - Processed 12200/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,788 - INFO - MainThread - Processed 12300/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,788 - INFO - MainThread - Processed 12400/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,789 - INFO - MainThread - Processed 12500/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,789 - INFO - MainThread - Processed 12600/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,789 - INFO - MainThread - Processed 12700/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,790 - INFO - MainThread - Processed 12800/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,790 - INFO - MainThread - Processed 12900/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,790 - INFO - MainThread - Processed 13000/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,791 - INFO - MainThread - Processed 13100/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,791 - INFO - MainThread - Processed 13200/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,791 - INFO - MainThread - Processed 13300/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,792 - INFO - MainThread - Processed 13400/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,792 - INFO - MainThread - Processed 13500/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,792 - INFO - MainThread - Processed 13600/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,792 - INFO - MainThread - Processed 13700/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,792 - INFO - MainThread - Processed 13800/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,793 - INFO - MainThread - Processed 13900/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,793 - INFO - MainThread - Processed 14000/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,793 - INFO - MainThread - Processed 14100/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,794 - INFO - MainThread - Processed 14200/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,794 - INFO - MainThread - Processed 14300/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,794 - INFO - MainThread - Processed 14400/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,795 - INFO - MainThread - Processed 14500/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,795 - INFO - MainThread - Processed 14600/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,795 - INFO - MainThread - Processed 14700/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,796 - INFO - MainThread - Processed 14800/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,796 - INFO - MainThread - Processed 14900/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,796 - INFO - MainThread - Processed 15000/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,796 - INFO - MainThread - Processed 15100/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,797 - INFO - MainThread - Processed 15200/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,797 - INFO - MainThread - Processed 15300/25078 configs, valid: 0, time: 1.37s
+2025-05-11 08:28:38,797 - INFO - MainThread - Processed 15400/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,797 - INFO - MainThread - Processed 15500/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,798 - INFO - MainThread - Processed 15600/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,798 - INFO - MainThread - Processed 15700/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,798 - INFO - MainThread - Processed 15800/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,798 - INFO - MainThread - Processed 15900/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,799 - INFO - MainThread - Processed 16000/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,799 - INFO - MainThread - Processed 16100/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,799 - INFO - MainThread - Processed 16200/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,800 - INFO - MainThread - Processed 16300/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,800 - INFO - MainThread - Processed 16400/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,800 - INFO - MainThread - Processed 16500/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,800 - INFO - MainThread - Processed 16600/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,801 - INFO - MainThread - Processed 16700/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,801 - INFO - MainThread - Processed 16800/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,801 - INFO - MainThread - Processed 16900/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,802 - INFO - MainThread - Processed 17000/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,802 - INFO - MainThread - Processed 17100/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,802 - INFO - MainThread - Processed 17200/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,803 - INFO - MainThread - Processed 17300/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,803 - INFO - MainThread - Processed 17400/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,803 - INFO - MainThread - Processed 17500/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,804 - INFO - MainThread - Processed 17600/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,804 - INFO - MainThread - Processed 17700/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,804 - INFO - MainThread - Processed 17800/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,805 - INFO - MainThread - Processed 17900/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,805 - INFO - MainThread - Processed 18000/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,805 - INFO - MainThread - Processed 18100/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,806 - INFO - MainThread - Processed 18200/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,806 - INFO - MainThread - Processed 18300/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,806 - INFO - MainThread - Processed 18400/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,807 - INFO - MainThread - Processed 18500/25078 configs, valid: 0, time: 1.38s
+2025-05-11 08:28:38,807 - INFO - MainThread - Processed 18600/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,807 - INFO - MainThread - Processed 18700/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,808 - INFO - MainThread - Processed 18800/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,808 - INFO - MainThread - Processed 18900/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,808 - INFO - MainThread - Processed 19000/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,809 - INFO - MainThread - Processed 19100/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,809 - INFO - MainThread - Processed 19200/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,809 - INFO - MainThread - Processed 19300/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,810 - INFO - MainThread - Processed 19400/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,810 - INFO - MainThread - Processed 19500/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,810 - INFO - MainThread - Processed 19600/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,811 - INFO - MainThread - Processed 19700/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,811 - INFO - MainThread - Processed 19800/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,811 - INFO - MainThread - Processed 19900/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,812 - INFO - MainThread - Processed 20000/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,812 - INFO - MainThread - Processed 20100/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,812 - INFO - MainThread - Processed 20200/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,813 - INFO - MainThread - Processed 20300/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,813 - INFO - MainThread - Processed 20400/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,813 - INFO - MainThread - Processed 20500/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,814 - INFO - MainThread - Processed 20600/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,814 - INFO - MainThread - Processed 20700/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,814 - INFO - MainThread - Processed 20800/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,815 - INFO - MainThread - Processed 20900/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,815 - INFO - MainThread - Processed 21000/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,815 - INFO - MainThread - Processed 21100/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,816 - INFO - MainThread - Processed 21200/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,816 - INFO - MainThread - Processed 21300/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,816 - INFO - MainThread - Processed 21400/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,817 - INFO - MainThread - Processed 21500/25078 configs, valid: 0, time: 1.39s
+2025-05-11 08:28:38,817 - INFO - MainThread - Processed 21600/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,817 - INFO - MainThread - Processed 21700/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,818 - INFO - MainThread - Processed 21800/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,818 - INFO - MainThread - Processed 21900/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,819 - INFO - MainThread - Processed 22000/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,819 - INFO - MainThread - Processed 22100/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,819 - INFO - MainThread - Processed 22200/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,820 - INFO - MainThread - Processed 22300/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,820 - INFO - MainThread - Processed 22400/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,820 - INFO - MainThread - Processed 22500/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,820 - INFO - MainThread - Processed 22600/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,821 - INFO - MainThread - Processed 22700/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,821 - INFO - MainThread - Processed 22800/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,821 - INFO - MainThread - Processed 22900/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,822 - INFO - MainThread - Processed 23000/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,822 - INFO - MainThread - Processed 23100/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,822 - INFO - MainThread - Processed 23200/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,822 - INFO - MainThread - Processed 23300/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,823 - INFO - MainThread - Processed 23400/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,823 - INFO - MainThread - Processed 23500/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,823 - INFO - MainThread - Processed 23600/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,824 - INFO - MainThread - Processed 23700/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,824 - INFO - MainThread - Processed 23800/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,824 - INFO - MainThread - Processed 23900/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,824 - INFO - MainThread - Processed 24000/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,825 - INFO - MainThread - Processed 24100/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,825 - INFO - MainThread - Processed 24200/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,825 - INFO - MainThread - Processed 24300/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,825 - INFO - MainThread - Processed 24400/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,826 - INFO - MainThread - Processed 24500/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,826 - INFO - MainThread - Processed 24600/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,826 - INFO - MainThread - Processed 24700/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,827 - INFO - MainThread - Processed 24800/25078 configs, valid: 0, time: 1.40s
+2025-05-11 08:28:38,827 - INFO - MainThread - Processed 24900/25078 configs, valid: 0, time: 1.41s
+2025-05-11 08:28:38,827 - INFO - MainThread - Processed 25000/25078 configs, valid: 0, time: 1.41s
+2025-05-11 08:28:38,830 - INFO - MainThread - Removed duplicates: 0 unique, 0 valid, total time: 1.41s
+2025-05-11 08:28:38,841 - INFO - MainThread - Parsed and deduplicated in 1.42 seconds
+2025-05-11 08:28:38,841 - INFO - MainThread - Parsed configs: 0
+2025-05-11 08:28:38,842 - INFO - MainThread - Saved configs in 0.00 seconds
+2025-05-11 08:28:38,843 - INFO - MainThread - Generated README in 0.00 seconds
