@@ -16,6 +16,8 @@ from collections import defaultdict
 import jdatetime
 import wget
 import pickle
+import argparse
+import subprocess
 
 # تنظیمات اولیه
 LOGS_DIR = "logs"
@@ -36,6 +38,7 @@ GITHUB_TOKEN = os.getenv("REPO_TOKEN")
 GEOIP_DB = "geoip-lite/GeoLite2-Country.mmdb"
 UPDATE_INTERVAL = 21600
 COMMON_PORTS = [80, 443, 2052, 2053, 2095, 2096, 8080, 8443, 8880, 10000]
+CACHE_TTL = 24 * 3600  # 24 ساعت
 
 # کش
 CACHE_DIR = "cache"
@@ -45,7 +48,14 @@ GEOIP_CACHE_FILE = os.path.join(CACHE_DIR, "geoip_cache.pkl")
 
 dns_cache = {}
 geoip_cache = {}
-server_counter = 0  # برای شماره‌گذاری سرورها
+server_counter = 0
+
+# دیکشنری پرچم‌ها
+COUNTRY_FLAGS = {
+    "US": "🇺🇸", "DE": "🇩🇪", "GB": "🇬🇧", "FR": "🇫🇷", "CA": "🇨🇦", "NL": "🇳🇱",
+    "AU": "🇦🇺", "JP": "🇯🇵", "CN": "🇨🇳", "RU": "🇷🇺", "BR": "🇧🇷", "IN": "🇮🇳",
+    "Unknown": "🌐"
+}
 
 def load_cache():
     global dns_cache, geoip_cache
@@ -70,6 +80,20 @@ def save_cache():
     except Exception as e:
         logging.error(f"Error saving cache: {e}")
 
+def load_filters():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--ports", type=str, default=",".join(map(str, COMMON_PORTS)))
+    parser.add_argument("--countries", type=str, default="")
+    parser.add_argument("--protocols", type=str, default=",".join(PROTOCOLS))
+    parser.add_argument("--networks", type=str, default=",".join(NETWORKS))
+    args = parser.parse_args()
+    return {
+        "ports": set(map(int, args.ports.split(","))),
+        "countries": set(args.countries.split(",")) if args.countries else set(),
+        "protocols": set(args.protocols.split(",")),
+        "networks": set(args.networks.split(","))
+    }
+
 # دیکشنری‌های فال‌بک
 server_names = {
     "104.21.32.1": "parshm on kashoar",
@@ -85,7 +109,6 @@ TELEGRAM_CHANNELS = [
     "activevshop", "airdroplandcod", "alfred_config", "alienvpn402", "alo_v2rayng",
     "alpha_v2ray_fazayi", "amirinventor2010", "amironetwork", "ana_service", "angus_vpn",
     "zyfxlnn"
-    # ... (لیست کامل 700+ کانال)
 ]
 
 # منابع خارجی
@@ -121,7 +144,10 @@ EXTERNAL_SOURCES = [
     {"url": "https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/sub.txt", "type": "text", "name": "ALIILAPRO Sub"},
     {"url": "https://raw.githubusercontent.com/Ashkan-m/v2ray/main/Sub.txt", "type": "text", "name": "Ashkan-m Sub"},
     {"url": "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/row-url/actives.txt", "type": "text", "name": "MrMohebi Actives"},
-    {"url": "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/row-url/all.txt", "type": "text", "name": "MrMohebi All"}
+    {"url": "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/row-url/all.txt", "type": "text", "name": "MrMohebi All"},
+    # منابع جدید برای Hysteria و Reality
+    {"url": "https://raw.githubusercontent.com/hysteria-configs/repo/main/hysteria.txt", "type": "text", "name": "Hysteria Configs"},
+    {"url": "https://raw.githubusercontent.com/reality-vpn/configs/main/reality.txt", "type": "text", "name": "Reality Configs"}
 ]
 
 # پروتکل‌ها و شبکه‌ها
@@ -163,55 +189,76 @@ def check_port(host, port, timeout=2):
     except:
         return False
 
-def resolve_domain(domain):
-    if domain in dns_cache:
-        return dns_cache[domain]
+def resolve_domain(domain, retries=3):
+    if domain in dns_cache and (time.time() - dns_cache[domain]["timestamp"]) < CACHE_TTL:
+        return dns_cache[domain]["ip"]
     if not re.match(VALID_DOMAIN_REGEX, domain):
         logging.debug(f"Invalid domain skipped: {domain}")
-        dns_cache[domain] = domain
+        dns_cache[domain] = {"ip": domain, "timestamp": time.time()}
         return domain
-    try:
-        answers = dns.resolver.resolve(domain, 'A')
-        ip = answers[0].to_text()
-        dns_cache[domain] = ip
-        return ip
-    except Exception as e:
-        logging.debug(f"DNS resolve failed for {domain}: {e}")
-        dns_cache[domain] = domain
-        return domain
+    for attempt in range(retries):
+        try:
+            answers = dns.resolver.resolve(domain, 'A')
+            ip = answers[0].to_text()
+            dns_cache[domain] = {"ip": ip, "timestamp": time.time()}
+            return ip
+        except Exception as e:
+            logging.debug(f"DNS resolve failed for {domain}: {e}")
+            if attempt == retries - 1:
+                dns_cache[domain] = {"ip": domain, "timestamp": time.time()}
+                return domain
+            time.sleep(1)
 
-def get_ipinfo(ip):
-    if ip in geoip_cache:
-        return geoip_cache[ip]
-    try:
-        url = f"https://api.hackertarget.com/geoip/?q={ip}"
-        response = requests.get(url, timeout=5)
-        if response.status_code == 200:
-            lines = response.text.strip().split('\n')
-            country = country_map["default"]
-            for line in lines:
-                if line.startswith("Country:"):
-                    country = line.split("Country: ")[1].strip()
-                    break
-            geoip_cache[ip] = {"country": country}
-            return geoip_cache[ip]
-        else:
-            logging.warning(f"Hackertarget API failed for {ip}: {response.status_code}")
-    except Exception as e:
-        logging.error(f"Hackertarget API error for {ip}: {e}")
+def get_ipinfo(ip, retries=3):
+    if ip in geoip_cache and (time.time() - geoip_cache[ip]["timestamp"]) < CACHE_TTL:
+        return geoip_cache[ip]["data"]
+    for attempt in range(retries):
+        try:
+            url = f"https://api.hackertarget.com/geoip/?q={ip}"
+            response = requests.get(url, timeout=5)
+            if response.status_code == 200:
+                lines = response.text.strip().split('\n')
+                country = country_map["default"]
+                for line in lines:
+                    if line.startswith("Country:"):
+                        country = line.split("Country: ")[1].strip()
+                        break
+                geoip_cache[ip] = {"data": {"country": country}, "timestamp": time.time()}
+                return geoip_cache[ip]["data"]
+            elif response.status_code == 429:
+                logging.warning(f"Rate limit hit for {ip}, retrying {attempt + 1}/{retries}")
+                time.sleep(2)
+            else:
+                logging.warning(f"Hackertarget API failed for {ip}: {response.status_code}")
+        except Exception as e:
+            logging.error(f"Hackertarget API error for {ip}: {e}")
+        time.sleep(2)
     try:
         with geoip2.database.Reader(GEOIP_DB) as reader:
             response = reader.country(ip)
             country = response.country.iso_code or country_map["default"]
-            geoip_cache[ip] = {"country": country}
-            return geoip_cache[ip]
+            geoip_cache[ip] = {"data": {"country": country}, "timestamp": time.time()}
+            return geoip_cache[ip]["data"]
     except:
-        geoip_cache[ip] = {"country": country_map.get(ip, country_map["default"])}
-        return geoip_cache[ip]
+        geoip_cache[ip] = {"data": {"country": country_map.get(ip, country_map["default"])}, "timestamp": time.time()}
+        return geoip_cache[ip]["data"]
 
-def validate_server(ip, port):
+def validate_server(ip, port, skip_port_check=False):
+    if skip_port_check:
+        return True, port
     is_open = check_port(ip, port)
     return is_open, port
+
+def test_config(config):
+    try:
+        config_json = {"outbounds": [{"protocol": config["protocol"], "settings": {"address": config["ip"], "port": config["port"]}}]}
+        with open("temp_config.json", "w") as f:
+            json.dump(config_json, f)
+        result = subprocess.run(["v2ray", "run", "-c", "temp_config.json"], timeout=5, capture_output=True)
+        return result.returncode == 0
+    except Exception as e:
+        logging.debug(f"Config test failed: {e}")
+        return False
 
 def extract_configs(channel):
     configs = []
@@ -274,12 +321,12 @@ def extract_configs_from_source(source):
     logging.error(f"All attempts failed for {url}")
     return []
 
-def parse_and_enrich_config(config):
+def parse_and_enrich_config(config, filters):
     global server_counter
     try:
         protocol = next((p for p in PROTOCOLS if config.startswith(f"{p}://")), None)
-        if not protocol:
-            logging.debug(f"Invalid protocol for config: {config[:50]}...")
+        if not protocol or protocol not in filters["protocols"]:
+            logging.debug(f"Invalid or filtered protocol for config: {config[:50]}...")
             return None
         
         decoded = config
@@ -300,8 +347,8 @@ def parse_and_enrich_config(config):
         port = int(next((g for g in port_match.groups() if g), "443")) if port_match else 443
         network = next((g for g in network_match.groups() if g), "tcp") if network_match else "tcp"
         
-        if not host:
-            logging.debug(f"No valid host found for config: {config[:50]}...")
+        if not host or port not in filters["ports"] or network not in filters["networks"]:
+            logging.debug(f"No valid host/port/network for config: {config[:50]}...")
             return None
         
         if protocol == "reality":
@@ -314,42 +361,52 @@ def parse_and_enrich_config(config):
         
         ipinfo = get_ipinfo(ip)
         country = ipinfo["country"]
+        if filters["countries"] and country not in filters["countries"]:
+            logging.debug(f"Country {country} filtered for config: {config[:50]}...")
+            return None
         
         # شماره‌گذاری سرور
         server_counter += 1
         server_name = f"Server {server_counter}"
         
-        is_port_open, open_port = validate_server(ip, port)
+        is_port_open, open_port = validate_server(ip, port, skip_port_check=os.getenv("SKIP_PORT_CHECK", "false").lower() == "true")
         
-        title = f"{protocol.upper()} | {network.upper()} | {country} | {server_name}"
+        # پرچم کشور
+        flag = COUNTRY_FLAGS.get(country, COUNTRY_FLAGS["Unknown"])
+        
+        title = f"{protocol.upper()} | {network.upper()} | {flag} | {server_name}"
         config = config.split("#")[0] + f"#{title}"
         
-        return {
+        parsed = {
             "protocol": protocol,
             "config": config,
             "ip": ip,
             "port": open_port,
             "is_port_open": is_port_open,
-            "network": network
+            "network": network,
+            "country": country
         }
+        
+        if is_port_open and not test_config(parsed):
+            parsed["is_port_open"] = False
+        
+        return parsed
     except Exception as e:
         logging.debug(f"Error parsing config {config[:50]}...: {e}")
         return None
 
-def remove_duplicates(configs):
+def remove_duplicates(configs, filters):
     global server_counter
-    server_counter = 0  # ریست کانتر برای هر اجرا
+    server_counter = 0
     unique_configs = {}
     start_time = time.time()
     valid_configs = 0
     
-    # فیلتر اولیه برای حذف تکراری‌ها
     configs = list(set(configs))
     logging.info(f"After initial deduplication: {len(configs)} configs")
     
-    # پردازش موازی
-    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
-        future_to_config = {executor.submit(parse_and_enrich_config, config): config for config in configs}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+        future_to_config = {executor.submit(parse_and_enrich_config, config, filters): config for config in configs}
         for i, future in enumerate(concurrent.futures.as_completed(future_to_config)):
             if i % 100 == 0 and i > 0:
                 logging.info(f"Processed {i}/{len(configs)} configs, valid: {valid_configs}, time: {time.time() - start_time:.2f}s")
@@ -364,7 +421,7 @@ def remove_duplicates(configs):
 def collect_configs():
     configs = []
     
-    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
         future_to_channel = {executor.submit(extract_configs, channel): channel for channel in TELEGRAM_CHANNELS}
         for future in concurrent.futures.as_completed(future_to_channel):
             channel = future_to_channel[future]
@@ -373,7 +430,7 @@ def collect_configs():
             except Exception as e:
                 logging.error(f"Error collecting from {channel}: {e}")
     
-    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
         future_to_source = {executor.submit(extract_configs_from_source, source): source for source in EXTERNAL_SOURCES}
         for future in concurrent.futures.as_completed(future_to_source):
             source = future_to_source[future]
@@ -414,15 +471,13 @@ def save_configs(configs):
                     f.write("\n".join(configs_all) + "\n")
                 with open(os.path.join(protocol_dir, "all_configs_base64.txt"), "w", encoding="utf-8") as f:
                     f.write(base64.b64encode("\n".join(configs_all).encode("utf-8")).decode("utf-8"))
+                with open(os.path.join(protocol_dir, "configs.json"), "w", encoding="utf-8") as f:
+                    json.dump(configs_all, f, indent=4, ensure_ascii=False)
             
             configs_open = protocol_configs[protocol][network]["open"]
             if configs_open:
                 with open(os.path.join(protocol_dir, "open_configs.txt"), "w", encoding="utf-8") as f:
                     f.write("\n".join(configs_open) + "\n")
-            
-            if configs_all:
-                with open(os.path.join(protocol_dir, "configs.json"), "w", encoding="utf-8") as f:
-                    json.dump(configs_all, f, indent=4, ensure_ascii=False)
     
     mix_dir = os.path.join(OUTPUT_DIR, "mix")
     os.makedirs(mix_dir, exist_ok=True)
@@ -448,8 +503,13 @@ def save_configs(configs):
 
 def generate_readme(parsed_configs):
     stats = defaultdict(int)
+    country_stats = defaultdict(int)
+    open_stats = defaultdict(int)
     for parsed in parsed_configs:
         stats[parsed["protocol"]] += 1
+        country_stats[parsed["country"]] += 1
+        if parsed["is_port_open"]:
+            open_stats[parsed["protocol"]] += 1
     
     readme = f"""# 🛠️ VPN Configurations Collector
 
@@ -457,13 +517,23 @@ def generate_readme(parsed_configs):
 
 ## 📊 Stats
 **Last Update**: {jdatetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S')}  
-**Total Configurations**: {len(parsed_configs)}
+**Total Configurations**: {len(parsed_configs)}  
+**Open Configurations**: {sum(open_stats.values())}
 
-| Protocol | Count |
-|:--------:|:-----:|
+| Protocol | Total Count | Open Count |
+|:--------:|:-----------:|:----------:|
 """
     for proto in PROTOCOLS:
-        readme += f"| {proto.capitalize()} | {stats[proto]} |\n"
+        readme += f"| {proto.capitalize()} | {stats[proto]} | {open_stats[proto]} |\n"
+    
+    readme += f"""
+## 🌍 Configurations by Country
+| Country | Count |
+|:-------:|:-----:|
+"""
+    for country, count in sorted(country_stats.items()):
+        flag = COUNTRY_FLAGS.get(country, COUNTRY_FLAGS["Unknown"])
+        readme += f"| {flag} {country} | {count} |\n"
     
     readme += f"""
 ## 🔗 Sources
@@ -475,14 +545,14 @@ def generate_readme(parsed_configs):
     
     readme += """
 ## 📋 Protocol Subscription Links
-| Protocol | Network | Link | Count |
-|:--------:|:-------:|:----:|:-----:|
+| Protocol | Network | Text Link | Base64 Link | JSON Link | Count |
+|:--------:|:-------:|:---------:|:-----------:|:---------:|:-----:|
 """
     for proto in PROTOCOLS:
         for network in NETWORKS:
             count = sum(1 for p in parsed_configs if p["protocol"] == proto and p["network"] == network)
             if count > 0:
-                readme += f"| {proto.capitalize()} | {network} | [Link](https://raw.githubusercontent.com/{GITHUB_REPO}/main/configs/{proto}/{network}/open_configs.txt) | {count} |\n"
+                readme += f"| {proto.capitalize()} | {network} | [Link](https://raw.githubusercontent.com/{GITHUB_REPO}/main/configs/{proto}/{network}/open_configs.txt) | [Base64](https://raw.githubusercontent.com/{GITHUB_REPO}/main/configs/{proto}/{network}/all_configs_base64.txt) | [JSON](https://raw.githubusercontent.com/{GITHUB_REPO}/main/configs/{proto}/{network}/configs.json) | {count} |\n"
     
     readme += """
 ## 🚀 How to Use
@@ -511,6 +581,7 @@ def push_to_github():
 
 def main():
     load_cache()
+    filters = load_filters()
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     
     start_time = time.time()
@@ -518,7 +589,7 @@ def main():
     logging.info(f"Collected raw configs in {time.time() - start_time:.2f} seconds")
     
     start_time = time.time()
-    parsed_configs = remove_duplicates(raw_configs)
+    parsed_configs = remove_duplicates(raw_configs, filters)
     logging.info(f"Parsed and deduplicated in {time.time() - start_time:.2f} seconds")
     logging.info(f"Parsed configs: {len(parsed_configs)}")
     
@@ -528,7 +599,7 @@ def main():
     
     start_time = time.time()
     readme_content = generate_readme(parsed_configs)
-    with open("README.md", "w", encoding="utf-8") as f:  # ذخیره در ریشه
+    with open("README.md", "w", encoding="utf-8") as f:
         f.write(readme_content)
     logging.info(f"Generated README in {time.time() - start_time:.2f} seconds")
     
