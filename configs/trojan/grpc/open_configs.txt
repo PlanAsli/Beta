@@ -1,0 +1,12 @@
+trojan://ZqS3Lxamkh@ru2.asc-sam.ir:2087?type=grpc&serviceName=&authority=&security=tls&fp=&alpn=h3,h2,http/1.1&sni=ru2.asc-sam.ir#TROJAN | GRPC | 🌐 | Server 14374
+trojan://da86c6b5-a130-4bb8-a6ef-00b77b85b9e7@94.131.122.157:8443?mode=gun&security=tls&type=grpc&serviceName=grpc&sni=uk2.safecdn.site#TROJAN | GRPC | 🌐 | Server 23102
+trojan://c65dbe85-354d-4892-909d-2b288830ee37@141.101.120.13:2053?security=tls&type=grpc&sni=1744156312.speed.baxsab.china.nicchina.pp.ua#TROJAN | GRPC | 🌐 | Server 23961
+trojan://Cl150MQWlG@209.250.236.93:443?security=tls&sni=irancell-ir-4.mmdruby13.store&type=grpc#TROJAN | GRPC | 🌐 | Server 816
+trojan://4069c35c-54ea-48ee-9ffa-05d9a0302043@172.67.220.32:443?security=tls&sni=m5tyui.999836.xyz&type=grpc&serviceName=GawgMugyRDAQXp6b7O176y2&fp=chrome&alpn=h2#TROJAN | GRPC | 🌐 | Server 23943
+trojan://67db0c34-ae7a-4369-a6b5-554c99d8e5c9@104.21.88.37:443?security=tls&sni=M4sdRtyU.999165.xYZ&type=grpc&serviceName=NuDL4mLmxQChjU3X&fp=chrome&alpn=h2#TROJAN | GRPC | 🌐 | Server 23410
+trojan://c65dbe85-354d-4892-909d-2b288830ee37@141.101.121.241:2096?security=tls&sni=1744156312.speed.nycvara.china.nicchina.pp.ua&type=grpc&serviceName=m3u8&allowInsecure=1#TROJAN | GRPC | 🌐 | Server 14468
+trojan://mainssh-ddoejfv14@95.179.254.136:443?security=tls&sni=frtgrpc.mainssh.xyz&type=grpc#TROJAN | GRPC | 🌐 | Server 10508
+trojan://63dbc6d0-4890-320c-8874-56f9f002d425@158.180.82.98:15446?security=tls&sni=freehr01.jd0001.top&type=grpc&serviceName=freehr01#TROJAN | GRPC | 🌐 | Server 13802
+trojan://c65dbe85-354d-4892-909d-2b288830ee37@141.101.121.226:2087?security=tls&sni=1744156312.speed.rdsactaa.china.nicchina.pp.ua&type=grpc&serviceName=m3u8&allowInsecure=1#TROJAN | GRPC | 🌐 | Server 22722
+trojan://mainssh-niwrhf87@108.61.171.167:443?security=tls&sni=getgrpc.mainssh.xyz&type=grpc#TROJAN | GRPC | 🌐 | Server 19953
+trojan://c65dbe85-354d-4892-909d-2b288830ee37@141.101.120.30:2083?security=tls&sni=1744156312.speed.dlsvara.china.nicchina.pp.ua&type=grpc&serviceName=m3u8&allowInsecure=1#TROJAN | GRPC | 🌐 | Server 18017

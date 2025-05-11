@@ -1,1 +1,1 @@
-vmess://588f094b-431b-422c-b80b-007945037072@de09.abvpn.ru:443?security=tls&sni=de09.abvpn.ru&fp=chrome&type=ws&path=/websocket&packetEncoding=xudp&encryption=none#VMESS | WS | Unknown | Server 812
+vmess://588f094b-431b-422c-b80b-007945037072@de09.abvpn.ru:443?security=tls&sni=de09.abvpn.ru&fp=chrome&type=ws&path=/websocket&packetEncoding=xudp&encryption=none#VMESS | WS | 🌐 | Server 10009
