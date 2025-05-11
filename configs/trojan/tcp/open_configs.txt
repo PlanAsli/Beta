@@ -1,6 +1,7 @@
-trojan://fad2ba40-1233-11f0-87bc-1239d0255272@uk1.test3.net:443?security=tls&amp;headerType=none&amp;type=tcp#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
-trojan://5afd9e20-2133-11f0-8d56-1239d0255272@fr1.test3.net:443?security=tls&amp;headerType=none&amp;type=tcp#TROJAN | tcp | 🔥Join+Telegram:@Fara | France
-trojan://6e9cdc20-b92a-11ef-973a-f23c913c8d2b@bbc02bbb-sw3ts0-sww7b0-1qwp5.la3.tcpbbr.net:443?security=tls&sni=bbc02bbb-sw3ts0-sww7b0-1qwp5.la3.tcpbbr.net#TROJAN | tcp | 🔥Join+Telegram:@Fara | United States
-trojan://e6a2e741-0fce-440b-910c-b81325e2263a@cache-giver-wife.stark-industries.solutions:443?security=tls&headerType=none&type=tcp&sni=cache-giver-wife.stark-industries.solutions#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
-trojan://4ea1d07c-41c2-42b5-954d-414fee051856@df.xiguajiasu.xyz:46002#TROJAN | tcp | %F0%9F%87%A8%F0%9F%8 | Japan
-trojan://74260667533381300@patient-emu.shiner427.skin:443?allowInsecure=0&sni=patient-emu.shiner427.skin#TROJAN | tcp | 🔥Join+Telegram:@Fara | United Kingdom
+trojan://43b5b200-1af3-11f0-a7e8-1239d0255272@fr1.test3.net:443?security=tls&headerType=none&type=tcp#TROJAN | tcp | 🔥Join+Telegram:@Fara | France
+trojan://1ae2e460-1af4-11f0-a5a4-1239d0255272@uk1.test3.net:443?security=tls&headerType=none&type=tcp#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
+trojan://3482c71a-d01c-4ae5-b454-fa8cb3785f66@guy-trace-lyric.stark-industries.solutions:443?security=tls&headerType=none&type=tcp#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
+trojan://ef23ddd0-14c5-39c2-9880-af55ce892363@t5.qifei.app:54860?security=tls&type=tcp&headerType=none#TROJAN | tcp | VL-0217-035 | Japan
+trojan://dQUWbcwECl@automq3-proxy.automq-sg.com:443?security=tls#TROJAN | tcp | 🔥Join+Telegram:@Fara | Japan
+trojan://54231b3d-a39d-4769-a511-2a1c663a62b1@sg01.trojanyyds.xyz:443?security=tls&sni=sg01.trojanyyds.xyz#TROJAN | tcp | 🔥Join+Telegram:@Fara | Hong Kong
+trojan://243eab52-9ac1-405c-887c-eb112c0985b8@sg02.trojanyyds.xyz:443?security=tls&amp;type=tcp&amp;headerType=none#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
