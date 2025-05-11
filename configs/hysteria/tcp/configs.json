@@ -1,0 +1,4 @@
+[
+    "hysteria://de1.chaoyuenode.sbs:443/?mport=6000-21000&insecure=1&auth=483f8ef7-8480-490d-92fb-1fc392fb34b6&upmbps=30&downmbps=70&alpn=h3#HYSTERIA | TCP | 🌐 | Server 1",
+    "hysteria://fr1.chaoyuenode.sbs:443/?mport=6000-21000&insecure=1&auth=483f8ef7-8480-490d-92fb-1fc392fb34b6&upmbps=30&downmbps=70&alpn=h3#HYSTERIA | TCP | 🌐 | Server 5"
+]
