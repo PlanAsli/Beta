@@ -1,8 +1,7 @@
-trojan://3e8adda0-29cd-11f0-915a-1239d0255272@fr1.test3.net:443?security=tls&amp;headerType=none&amp;type=tcp#TROJAN | tcp | 🔥Join+Telegram:@Fara | France
-trojan://3482c71a-d01c-4ae5-b454-fa8cb3785f66@chop-wrist-bud.stark-industries.solutions:443?security=tls&path=/vpnowl&headerType=none&type=tcp#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
-trojan://b4c712a0-0a7d-11f0-808d-1239d0255272@uk1.test3.net:443?security=tls&amp;headerType=none&amp;type=tcp#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
-trojan://poTB9j1n12Tq@tasnim.andishehnegariran.ir:2053?allowInsecure=0&amp;sni=tasnim.andishehnegariran.ir&amp;ws=1&amp;wspath=%2F%F0%9F%86%94%40M3HDIO1#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
-trojan://zsu4Mq3A9J@uk-02.allhubb.info:8443?security=tls&sni=uk-02.allhubb.info&alpn=h3%2Ch2%2Chttp%2F1.1&type=tcp&headerType=none#TROJAN | tcp | VL-0217-020 | France
-trojan://4ea1d07c-41c2-42b5-954d-414fee051856@df.xiguajiasu.xyz:46002#TROJAN | tcp | %F0%9F%87%A8%F0%9F%8 | Japan
-trojan://6e9cdc20-b92a-11ef-973a-f23c913c8d2b@bbc02bbb-sw3ts0-sww7b0-1qwp5.la3.tcpbbr.net:443?security=tls&sni=bbc02bbb-sw3ts0-sww7b0-1qwp5.la3.tcpbbr.net#TROJAN | tcp | 🔥Join+Telegram:@Fara | United States
-trojan://dQUWbcwECl@automq3-proxy.automq-sg.com:443?security=tls#TROJAN | tcp | 🔥Join+Telegram:@Fara | Japan
+trojan://518299d0-066f-11f0-a2c8-1239d0255272@uk1.test3.net:443?security=tls&headerType=none&type=tcp#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
+trojan://xxoo@us.blazeppn.info:443?security=tls&sni=us.blazeppn.info#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
+trojan://86797df0-2132-11f0-b942-1239d0255272@fr1.test3.net:443?security=tls&headerType=none&type=tcp#TROJAN | tcp | 🔥Join+Telegram:@Fara | France
+trojan://4ea1d07c-41c2-42b5-954d-414fee051856@df.xiguajiasu.xyz:46002#TROJAN | tcp | 🔥Join+Telegram:@Fara | Japan
+trojan://e6a2e741-0fce-440b-910c-b81325e2263a@bring-glove-shine.stark-industries.solutions:443?security=tls&path=%2Fvpnowl&headerType=none&type=tcp#TROJAN | tcp | 🇮🇱[openproxylist.com | Unknown
+trojan://243eab52-9ac1-405c-887c-eb112c0985b8@sg02.trojanyyds.xyz:443?security=tls&amp;type=tcp&amp;headerType=none#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
+trojan://74260667533381300@patient-emu.shiner427.skin:443?allowInsecure=0&sni=patient-emu.shiner427.skin#TROJAN | tcp | 🇬🇧[openproxylist.com | United Kingdom

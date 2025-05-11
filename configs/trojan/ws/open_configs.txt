@@ -1,3 +1,2 @@
-trojan://trojan@www.visa.com.sg:8443?allowInsecure=0&sni=store.timimi.dpdns.org&type=ws&path=/?ed=2560#TROJAN | ws | 🔥Join+Telegram:@Fara | None
-trojan://aTArbZ2F0E@cloudgetservice.mcloudservice.site:443?sni=uSa-vp-27.bLAzECLOUD.SITE&type=ws&host=uSa-vp-27.bLAzECLOUD.SITE&path=/linkvkws#TROJAN | ws | telegram 🌟 DailyV2ry | Unknown
-trojan://bpb-trojan@www.vpslook.com:443?path=%2Ftr%3Fed%3D2560&amp;security=tls&amp;alpn=h3&amp;host=bpb-hd.aaronchin.xyz&amp;fp=randomized&amp;type=ws&amp;sni=bpb-hd.aaronchin.xyz#TROJAN | ws | 🔥Join+Telegram:@Fara | None
+trojan://aTArbZ2F0E@cloudgetservice.mcloudservice.site:443?sni=uSa-vp-27.bLAzECLOUD.SITE&type=ws&host=uSa-vp-27.bLAzECLOUD.SITE&path=/linkvkws#TROJAN | ws | telegram ☂️ DailyV2r | Unknown
+trojan://poTB9j1n12Tq@tasnim.andishehnegariran.ir:2053?allowInsecure=0&sni=tasnim.andishehnegariran.ir&alpn=h3%2Ch2%2Chttp/1.1&type=ws&path=/🆔@M3HDIO1#TROJAN | ws | 🔥Join+Telegram:@Fara | Unknown

@@ -1,0 +1,1 @@
+trojan://ZqS3Lxamkh@ru2.asc-sam.ir:2087?type=grpc&serviceName=&authority=&security=tls&fp=&alpn=h3,h2,http/1.1&sni=ru2.asc-sam.ir#TROJAN | grpc | 🔥Join+Telegram:@Fara | Russia
