@@ -42,7 +42,6 @@ CACHE_DIR = "cache"
 os.makedirs(CACHE_DIR, exist_ok=True)
 DNS_CACHE_FILE = os.path.join(CACHE_DIR, "dns_cache.pkl")
 GEOIP_CACHE_FILE = os.path.join(CACHE_DIR, "geoip_cache.pkl")
-IPINFO_TOKEN = os.getenv("IPINFO_TOKEN")
 
 dns_cache = {}
 geoip_cache = {}
@@ -75,10 +74,6 @@ server_names = {
     "104.21.32.1": "parshm on kashoar",
     "default": "Unknown Server"
 }
-isp_map = {
-    "104.21.32.1": "Cloudflare",
-    "default": "Unknown ISP"
-}
 country_map = {
     "104.21.32.1": "US",
     "default": "Unknown"
@@ -92,7 +87,7 @@ TELEGRAM_CHANNELS = [
     "zyfxlnn"
 ]
 
-# منابع خارجی (بدون Space-00)
+# منابع خارجی
 EXTERNAL_SOURCES = [
     {"url": "https://raw.githubusercontent.com/arshiacomplus/v2rayExtractor/refs/heads/main/mix/sub.html", "type": "html", "name": "ArshiaComPlus HTML"},
     {"url": "https://raw.githubusercontent.com/Kwinshadow/TelegramV2rayCollector/refs/heads/main/sublinks/mix.txt", "type": "text", "name": "Kwinshadow Mix"},
@@ -145,6 +140,9 @@ PATTERNS = {
     "juicity": r"(?<![\w-])(juicity://[^\s<>#]+)"
 }
 
+# regex برای دامنه‌های معتبر
+VALID_DOMAIN_REGEX = r'^[a-zA-Z0-9][a-zA-Z0-9\.-]{0,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$'
+
 def download_geoip_db():
     if not os.path.exists('geoip-lite'):
         os.makedirs('geoip-lite')
@@ -167,41 +165,48 @@ def check_port(host, port, timeout=2):
 def resolve_domain(domain):
     if domain in dns_cache:
         return dns_cache[domain]
+    # فیلتر دامنه‌های معتبر
+    if not re.match(VALID_DOMAIN_REGEX, domain):
+        logging.debug(f"Invalid domain skipped: {domain}")
+        dns_cache[domain] = domain
+        return domain
     try:
         answers = dns.resolver.resolve(domain, 'A')
         ip = answers[0].to_text()
         dns_cache[domain] = ip
         return ip
     except Exception as e:
-        logging.warning(f"DNS resolve failed for {domain}: {e}")
+        logging.debug(f"DNS resolve failed for {domain}: {e}")
         dns_cache[domain] = domain
         return domain
 
 def get_ipinfo(ip):
     if ip in geoip_cache:
         return geoip_cache[ip]
-    if IPINFO_TOKEN:
-        try:
-            url = f"https://api.ipinfo.io/lite/{ip}?token={IPINFO_TOKEN}"
-            response = requests.get(url, timeout=5)
-            if response.status_code == 200:
-                data = response.json()
-                isp = data.get("as_name", isp_map["default"])
-                country = data.get("country_code", country_map["default"])
-                geoip_cache[ip] = {"isp": isp, "country": country}
-                return geoip_cache[ip]
-            else:
-                logging.warning(f"IPinfo API failed for {ip}: {response.status_code}")
-        except Exception as e:
-            logging.error(f"IPinfo API error for {ip}: {e}")
+    try:
+        url = f"https://api.hackertarget.com/geoip/?q={ip}"
+        response = requests.get(url, timeout=5)
+        if response.status_code == 200:
+            lines = response.text.strip().split('\n')
+            country = country_map["default"]
+            for line in lines:
+                if line.startswith("Country:"):
+                    country = line.split("Country: ")[1].strip()
+                    break
+            geoip_cache[ip] = {"country": country}
+            return geoip_cache[ip]
+        else:
+            logging.warning(f"Hackertarget API failed for {ip}: {response.status_code}")
+    except Exception as e:
+        logging.error(f"Hackertarget API error for {ip}: {e}")
     try:
         with geoip2.database.Reader(GEOIP_DB) as reader:
             response = reader.country(ip)
             country = response.country.iso_code or country_map["default"]
-            geoip_cache[ip] = {"isp": isp_map.get(ip, isp_map["default"]), "country": country}
+            geoip_cache[ip] = {"country": country}
             return geoip_cache[ip]
     except:
-        geoip_cache[ip] = {"isp": isp_map.get(ip, isp_map["default"]), "country": country_map.get(ip, country_map["default"])}
+        geoip_cache[ip] = {"country": country_map.get(ip, country_map["default"])}
         return geoip_cache[ip]
 
 def validate_server(ip, port):
@@ -292,8 +297,9 @@ def parse_and_enrich_config(config):
             network = "reality_tcp"
         
         ip = resolve_domain(host)
+        if ip == host:  # یعنی DNS resolve نشده
+            return None  # کانفیگ نامعتبر
         ipinfo = get_ipinfo(ip)
-        isp = ipinfo["isp"]
         country = ipinfo["country"]
         
         server_name = server_names.get(ip, server_names["default"])
@@ -304,7 +310,7 @@ def parse_and_enrich_config(config):
         
         is_port_open, open_port = validate_server(ip, port)
         
-        title = f"{protocol.upper()} | {network} | {server_name} | {isp} | {country}"
+        title = f"{protocol.upper()} | {network} | {server_name} | {country}"
         config = config.split("#")[0] + f"#{title}"
         
         return {
@@ -316,7 +322,7 @@ def parse_and_enrich_config(config):
             "network": network
         }
     except Exception as e:
-        logging.error(f"Error parsing config {config[:50]}...: {e}")
+        logging.debug(f"Error parsing config {config[:50]}...: {e}")
         return None
 
 def remove_duplicates(configs):
@@ -324,16 +330,23 @@ def remove_duplicates(configs):
     start_time = time.time()
     valid_configs = 0
     
-    # فیلتر اولیه برای حذف تکراری‌های خام
+    # فیلتر اولیه
     configs = list(set(configs))
     logging.info(f"After initial deduplication: {len(configs)} configs")
     
+    # فیلتر کانفیگ‌های معتبر
+    filtered_configs = []
+    for config in configs:
+        if re.search(r'(host|address)=[\w\.-]+', config) and re.search(r'port=\d+', config):
+            filtered_configs.append(config)
+    logging.info(f"After validity filter: {len(filtered_configs)} configs")
+    
     # پردازش موازی
     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-        future_to_config = {executor.submit(parse_and_enrich_config, config): config for config in configs[:5000]}
+        future_to_config = {executor.submit(parse_and_enrich_config, config): config for config in filtered_configs[:5000]}
         for i, future in enumerate(concurrent.futures.as_completed(future_to_config)):
             if i % 100 == 0 and i > 0:
-                logging.info(f"Processed {i}/{len(configs[:5000])} configs, valid: {valid_configs}, time: {time.time() - start_time:.2f}s")
+                logging.info(f"Processed {i}/{len(filtered_configs[:5000])} configs, valid: {valid_configs}, time: {time.time() - start_time:.2f}s")
             if parsed := future.result():
                 valid_configs += 1
                 key = f"{parsed['protocol']}-{parsed['ip']}:{parsed['port']}"
