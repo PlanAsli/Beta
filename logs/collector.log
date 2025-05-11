@@ -3135,3 +3135,6 @@
 2025-05-11 08:29:00,389 - INFO - MainThread - Parsed configs: 0
 2025-05-11 08:29:00,390 - INFO - MainThread - Saved configs in 0.00 seconds
 2025-05-11 08:29:00,391 - INFO - MainThread - Generated README in 0.00 seconds
+2025-05-11 08:29:00,987 - INFO - MainThread - Successfully pushed to GitHub
+2025-05-11 08:29:00,987 - INFO - MainThread - Pushed to GitHub in 0.60 seconds
+2025-05-11 08:29:00,988 - INFO - MainThread - Saved cache: 7786 DNS, 339 GeoIP entries
