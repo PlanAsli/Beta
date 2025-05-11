@@ -22,7 +22,7 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-# توابع وارد شده از title.py (فرض شده که این توابع وجود دارن)
+# توابع فرضی از title.py
 def check_modify_config(array_configuration, protocol_type, check_connection=True):
     parsed_configs = []
     tls_configs, non_tls_configs, tcp_configs, ws_configs, http_configs, grpc_configs = [], [], [], [], [], []
@@ -32,8 +32,7 @@ def check_modify_config(array_configuration, protocol_type, check_connection=Tru
             parsed = parse_config(config, protocol_type)
             if parsed is None:
                 continue
-            # اینجا باید منطق واقعی check_modify_config پیاده‌سازی بشه
-            parsed_configs.append(config)  # برای ساده‌سازی، کانفیگ خام نگه داشته می‌شه
+            parsed_configs.append(config)
         except Exception as e:
             logging.error(f"Error in check_modify_config for {protocol_type} config {config}: {e}")
     
@@ -42,14 +41,11 @@ def check_modify_config(array_configuration, protocol_type, check_connection=Tru
 def create_country(array_mixed):
     country_dict = {}
     for config in array_mixed:
-        country = "Unknown"  # فرضیه ساده
+        country = "Unknown"
         if country not in country_dict:
             country_dict[country] = []
         country_dict[country].append(config)
     return country_dict
-
-def create_country_table(countries_path):
-    return "| Country | Config Count |\n|---------|--------------|\n| Unknown | 0 |"
 
 def create_internet_protocol(array_mixed):
     ipv4_configs, ipv6_configs = [], []
@@ -151,7 +147,6 @@ def find_matches(text_content):
 
     matches = {key: re.findall(pattern, text_content, re.IGNORECASE) for key, pattern in patterns.items()}
     
-    # پاک‌سازی و اصلاح عنوان‌ها
     for key in ['shadowsocks', 'trojan', 'vmess', 'vless', 'reality', 'tuic', 'hysteria', 'juicity']:
         if key in matches:
             matches[key] = [re.sub(r"#[^#]+$", "", html.unescape(x)) + (f"#{key.upper()}" if key != 'vmess' else '') for x in matches[key]]
@@ -237,7 +232,6 @@ def parse_config(config, protocol_type):
                 "params": match.group("params"),
                 "title": match.group("title") or ""
             }
-        # برای پروتکل‌های دیگه هم می‌تونی اضافه کنی
     except Exception as e:
         logging.error(f"Error parsing {protocol_type} config {config}: {e}")
         return None
@@ -395,7 +389,6 @@ for channel, messages in new_channel_messages:
     else:
         invalid_array_channels.add(channel)
 
-    # پردازش لینک‌ها و نام‌های کاربری جدید
     tg_username_list_new = set()
     for url in new_array_url:
         try:
@@ -579,10 +572,6 @@ def remove_duplicate_modified(array_configuration):
                 if parsed:
                     non_title_config = f"SS-{parsed['host']}:{parsed['port']}:{parsed['id']}"
             elif config.startswith('trojan'):
-                parsed = parse_config(config, "(I apologize for the cutoff in the previous response. Here's the complete corrected code, continuing from where it was interrupted)
-
-```python
-            elif config.startswith('trojan'):
                 parsed = parse_config(config, "TROJAN")
                 if parsed:
                     non_title_config = f"TR-{parsed['host']}:{parsed['port']}:{parsed['id']}"
@@ -595,12 +584,12 @@ def remove_duplicate_modified(array_configuration):
                 if parsed:
                     non_title_config = f"VL-{parsed['host']}:{parsed['port']}:{parsed['id']}"
             elif config.startswith('tuic'):
-                pattern = r"tuic://(?P<id>[^:]+):(?P<pass>[^@]+)@$$   ?(?P<host>[a-zA-Z0-9\.:-]+?)   $$?:(?P<port>[0-9]+)/?\?(?P<params>[^#]+)#?(?P<title>(?<=#).*)?"
+                pattern = r"tuic://(?P<id>[^:]+):(?P<pass>[^@]+)@\[?(?P<host>[a-zA-Z0-9\.:-]+?)\]?:(?P<port>[0-9]+)/?\?(?P<params>[^#]+)#?(?P<title>(?<=#).*)?"
                 match = re.match(pattern, config, flags=re.IGNORECASE)
                 if match:
                     non_title_config = f"TUIC-{match.group('host')}:{match.group('port')}:{match.group('id')}"
             elif config.startswith(('hysteria', 'hy2')):
-                pattern = r"(hysteria|hy2)://(?:[^@]+@)?$$   ?(?P<host>[a-zA-Z0-9\.:-]+?)   $$?:(?P<port>[0-9]+)/?\?(?P<params>[^#]+)#?(?P<title>(?<=#).*)?"
+                pattern = r"(hysteria|hy2)://(?:[^@]+@)?\[?(?P<host>[a-zA-Z0-9\.:-]+?)\]?:(?P<port>[0-9]+)/?\?(?P<params>[^#]+)#?(?P<title>(?<=#).*)?"
                 match = re.match(pattern, config, flags=re.IGNORECASE)
                 if match:
                     non_title_config = f"HYSTERIA-{match.group('host')}:{match.group('port')}"
@@ -631,6 +620,7 @@ raw_matches = remove_duplicate(raw_matches)
 channel_matches = remove_duplicate(channel_matches)
 
 # پردازش کانفیگ‌ها با check_modify_config
+array_tls, array_non_tls, array_tcp, array_ws, array_http, array_grpc = [], [], [], [], [], []
 for key, protocol_type in [
     ('shadowsocks', 'SHADOWSOCKS'), ('trojan', 'TROJAN'), ('vmess', 'VMESS'),
     ('vless', 'VLESS'), ('reality', 'REALITY'), ('tuic', 'TUIC'), ('hysteria', 'HYSTERIA')
@@ -639,12 +629,6 @@ for key, protocol_type in [
     matches[key], m_tls, m_non_tls, m_tcp, m_ws, m_http, m_grpc = check_modify_config(matches[key], protocol_type)
     raw_matches[key], r_tls, r_non_tls, r_tcp, r_ws, r_http, r_grpc = check_modify_config(raw_matches[key], protocol_type, check_connection=False)
     channel_matches[key], c_tls, c_non_tls, c_tcp, c_ws, c_http, c_grpc = check_modify_config(channel_matches[key], protocol_type)
-
-# ترکیب کانفیگ‌ها
-array_tls, array_non_tls, array_tcp, array_ws, array_http, array_grpc = [], [], [], [], [], []
-for key in ['shadowsocks', 'trojan', 'vmess', 'vless', 'reality', 'tuic', 'hysteria', 'juicity']:
-    protocol_arrays[key].extend(matches[key])
-    protocol_arrays[key].extend(channel_matches[key])
     array_tls.extend(c_tls)
     array_non_tls.extend(c_non_tls)
     array_tcp.extend(c_tcp)
@@ -863,125 +847,3 @@ for prefix, arrays in [
         configs.append(dev_titles['vless'])
         with open(f"./{prefix}/{'security' if key in ['tls', 'non_tls'] else 'networks'}/{key}", "w", encoding="utf-8") as file:
             file.write(base64.b64encode("\n".join(configs).encode("utf-8")).decode("utf-8"))
-
-# تولید readme
-readme = '''## Introduction
-The script systematically collects Vmess, Vless, ShadowSocks, Trojan, Reality, Hysteria, Tuic, and Juicity configurations from publicly accessible Telegram channels. It categorizes these configurations based on open and closed ports, eliminates duplicate entries, resolves configuration addresses using IP addresses, and revises configuration titles to reflect server and protocol-type properties.
-
-## Tutorial
-This is a guide for configuring domains by routing type in the `nekoray` and `nekobox` applications when using the `sing-box` core. To implement these domain settings, create new routes in either application and add the appropriate domains to the relevant `domains` section.
-
-- Bypass
-geosite:category-ir
-geosite:category-bank-ir
-geosite:ir
-geosite:category-government-ir
-geosite:category-education-ir
-geosite:category-news-ir
-geosite:category-isp-ir
-
-- **Proxy** (Routed through VPN/Proxy for restricted or international services)
-geosite:apple
-geosite:adobe
-geosite:google
-geosite:microsoft
-geosite:facebook
-geosite:twitter
-geosite:telegram
-geosite:whatsapp
-geosite:category-streaming
-geosite:category-gaming
-- **Block** (Blocked sites, typically ads or trackers)
-"""
-
-    # تولید جدول پروتکل‌ها
-    protocol_table = """## Protocol Type Subscription Links
-| **Protocol Type** | **Mixed Configurations** | **Telegram Channels** | **Subscription Links** |
-|:-----------------:|:------------------------:|:---------------------:|:----------------------:|
-"""
-    base_url = "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main"
-    for protocol in ['shadowsocks', 'trojan', 'vmess', 'vless', 'reality', 'tuic', 'hysteria', 'juicity']:
-        config_count = len(protocol_arrays.get(protocol, []))
-        protocol_table += f"| **{protocol.capitalize()} ({config_count})** | " \
-                         f"[Link]({base_url}/protocols/{protocol}) | " \
-                         f"[Link]({base_url}/channels/protocols/{protocol}) | " \
-                         f"[Link]({base_url}/subscribe/protocols/{protocol}) |\n"
-
-    # تولید جدول شبکه‌ها
-    network_table = """## Network Type Subscription Links
-| **Network Type** | **Mixed Configurations** | **Telegram Channels** | **Subscription Links** |
-|:----------------:|:------------------------:|:---------------------:|:----------------------:|
-"""
-    for network, configs in [('TCP', array_tcp), ('WebSocket (WS)', array_ws), ('HTTP', array_http), ('gRPC', array_grpc)]:
-        config_count = len(configs)
-        network_key = network.lower().replace(' ', '')
-        network_table += f"| **{network} ({config_count})** | " \
-                        f"[Link]({base_url}/networks/{network_key}) | " \
-                        f"[Link]({base_url}/channels/networks/{network_key}) | " \
-                        f"[Link]({base_url}/subscribe/networks/{network_key}) |\n"
-
-    # تولید جدول امنیت
-    security_table = """## Security Type Subscription Links
-| **Security Type** | **Mixed Configurations** | **Telegram Channels** | **Subscription Links** |
-|:-----------------:|:------------------------:|:---------------------:|:----------------------:|
-"""
-    for security, configs in [('TLS', array_tls), ('Non-TLS', array_non_tls)]:
-        config_count = len(configs)
-        security_key = security.lower().replace(' ', '-')
-        security_table += f"| **{security} ({config_count})** | " \
-                         f"[Link]({base_url}/security/{security_key}) | " \
-                         f"[Link]({base_url}/channels/security/{security_key}) | " \
-                         f"[Link]({base_url}/subscribe/security/{security_key}) |\n"
-
-    # تولید جدول پروتکل‌های اینترنتی
-    ip_table = """## Internet Protocol Type Subscription Links
-| **Internet Protocol Type** | **Mixed Configurations** | **Telegram Channels** | **Subscription Links** |
-|:--------------------------:|:------------------------:|:---------------------:|:----------------------:|
-"""
-    for ip_type, configs in [('IPv4', array_mixed_ipv4), ('IPv6', array_mixed_ipv6)]:
-        config_count = len(configs)
-        ip_key = ip_type.lower()
-        ip_table += f"| **{ip_type} ({config_count})** | " \
-                    f"[Link]({base_url}/layers/{ip_key}) | " \
-                    f"[Link]({base_url}/channels/layers/{ip_key}) | " \
-                    f"[Link]({base_url}/subscribe/layers/{ip_key}) |\n"
-
-    # تولید جدول کشورها
-    country_table = """## Country Subscription Links
-Subscription links for configurations are organized according to country and provide access to specialized configurations for services that implement location-based restrictions.
-
-| **Country** | **Config Count** | **Subscription Link** |
-|:-----------:|:----------------:|:---------------------:|
-"""
-    for country, configs in country_based_configs_dict.items():
-        config_count = len(configs)
-        country_table += f"| **{country}** | {config_count} | [Link]({base_url}/countries/{country}/mixed) |\n"
-
-    # محتوای اصلی readme
-    readme = f"""## Introduction
-The script systematically collects Vmess, Vless, ShadowSocks, Trojan, Reality, Hysteria, Tuic, and Juicity configurations from publicly accessible Telegram channels. It categorizes these configurations based on open and closed ports, eliminates duplicate entries, resolves configuration addresses using IP addresses, and revises configuration titles to reflect server and protocol-type properties.
-
-{tutorial_content}
-
-{protocol_table}
-
-{network_table}
-
-{security_table}
-
-{ip_table}
-
-{country_table}
-
-## Stats
-[![Stars](https://starchart.cc/soroushmirzaei/telegram-configs-collector.svg?variant=adaptive)](https://starchart.cc/soroushmirzaei/telegram-configs-collector)
-
-## Activity
-![Alt](https://repobeats.axiom.co/api/embed/6e88aa7d66986824532760b5b14120a22c8ca813.svg "Repobeats analytics image")
-"""
-
-    return readme
-
-# ذخیره readme
-with open('./readme.md', 'w', encoding='utf-8') as file:
-    file.write(generate_readme(protocol_arrays, country_based_configs_dict))
