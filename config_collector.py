@@ -45,6 +45,7 @@ GEOIP_CACHE_FILE = os.path.join(CACHE_DIR, "geoip_cache.pkl")
 
 dns_cache = {}
 geoip_cache = {}
+server_counter = 0  # برای شماره‌گذاری سرورها
 
 def load_cache():
     global dns_cache, geoip_cache
@@ -274,6 +275,7 @@ def extract_configs_from_source(source):
     return []
 
 def parse_and_enrich_config(config):
+    global server_counter
     try:
         protocol = next((p for p in PROTOCOLS if config.startswith(f"{p}://")), None)
         if not protocol:
@@ -313,15 +315,13 @@ def parse_and_enrich_config(config):
         ipinfo = get_ipinfo(ip)
         country = ipinfo["country"]
         
-        server_name = server_names.get(ip, server_names["default"])
-        if "#" in config:
-            tag = config.split("#")[-1].strip()
-            if tag and tag != "":
-                server_name = tag[:20]
+        # شماره‌گذاری سرور
+        server_counter += 1
+        server_name = f"Server {server_counter}"
         
         is_port_open, open_port = validate_server(ip, port)
         
-        title = f"{protocol.upper()} | {network} | {server_name} | {country}"
+        title = f"{protocol.upper()} | {network.upper()} | {country} | {server_name}"
         config = config.split("#")[0] + f"#{title}"
         
         return {
@@ -337,6 +337,8 @@ def parse_and_enrich_config(config):
         return None
 
 def remove_duplicates(configs):
+    global server_counter
+    server_counter = 0  # ریست کانتر برای هر اجرا
     unique_configs = {}
     start_time = time.time()
     valid_configs = 0
@@ -346,11 +348,11 @@ def remove_duplicates(configs):
     logging.info(f"After initial deduplication: {len(configs)} configs")
     
     # پردازش موازی
-    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-        future_to_config = {executor.submit(parse_and_enrich_config, config): config for config in configs[:5000]}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+        future_to_config = {executor.submit(parse_and_enrich_config, config): config for config in configs}
         for i, future in enumerate(concurrent.futures.as_completed(future_to_config)):
             if i % 100 == 0 and i > 0:
-                logging.info(f"Processed {i}/{len(configs[:5000])} configs, valid: {valid_configs}, time: {time.time() - start_time:.2f}s")
+                logging.info(f"Processed {i}/{len(configs)} configs, valid: {valid_configs}, time: {time.time() - start_time:.2f}s")
             if parsed := future.result():
                 valid_configs += 1
                 key = f"{parsed['protocol']}-{parsed['ip']}:{parsed['port']}"
@@ -526,7 +528,7 @@ def main():
     
     start_time = time.time()
     readme_content = generate_readme(parsed_configs)
-    with open(os.path.join(OUTPUT_DIR, "README.md"), "w", encoding="utf-8") as f:
+    with open("README.md", "w", encoding="utf-8") as f:  # ذخیره در ریشه
         f.write(readme_content)
     logging.info(f"Generated README in {time.time() - start_time:.2f} seconds")
     
