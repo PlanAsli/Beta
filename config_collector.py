@@ -22,59 +22,24 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-# توابع فرضی از title.py
-def check_modify_config(array_configuration, protocol_type, check_connection=True):
-    parsed_configs = []
-    tls_configs, non_tls_configs, tcp_configs, ws_configs, http_configs, grpc_configs = [], [], [], [], [], []
-    
-    for config in array_configuration:
-        try:
-            parsed = parse_config(config, protocol_type)
-            if parsed is None:
-                continue
-            parsed_configs.append(config)
-        except Exception as e:
-            logging.error(f"Error in check_modify_config for {protocol_type} config {config}: {e}")
-    
-    return parsed_configs, tls_configs, non_tls_configs, tcp_configs, ws_configs, http_configs, grpc_configs
+# تابع کمکی برای ایجاد پوشه‌ها
+def ensure_directory(directory):
+    try:
+        os.makedirs(directory, exist_ok=True)
+    except Exception as e:
+        logging.error(f"Failed to create directory {directory}: {e}")
 
-def create_country(array_mixed):
-    country_dict = {}
-    for config in array_mixed:
-        country = "Unknown"
-        if country not in country_dict:
-            country_dict[country] = []
-        country_dict[country].append(config)
-    return country_dict
-
-def create_internet_protocol(array_mixed):
-    ipv4_configs, ipv6_configs = [], []
-    for config in array_mixed:
-        if re.search(r'\d+\.\d+\.\d+\.\d+', config):
-            ipv4_configs.append(config)
-        elif re.search(r'[0-9a-fA-F:]+', config):
-            ipv6_configs.append(config)
-    return ipv4_configs, ipv6_configs
-
-# ایجاد پوشه geoip-lite و دانلود دیتابیس
-if not os.path.exists('./geoip-lite'):
-    os.mkdir('./geoip-lite')
-
-if os.path.exists('./geoip-lite/geoip-lite-country.mmdb'):
-    os.remove('./geoip-lite/geoip-lite-country.mmdb')
-
-url = 'https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-Country.mmdb'
-filename = 'geoip-lite-country.mmdb'
-try:
-    wget.download(url, filename)
-    os.rename(filename, os.path.join('./geoip-lite', filename))
-except Exception as e:
-    logging.error(f"Failed to download GeoLite database: {e}")
+# ایجاد پوشه‌های مورد نیاز
+required_dirs = [
+    './geoip-lite', './splitted', './security', './protocols',
+    './networks', './layers', './subscribe', './channels', './countries'
+]
+for dir_path in required_dirs:
+    ensure_directory(dir_path)
 
 # پاک‌سازی فایل no-match
 with open("./splitted/no-match", "w") as no_match_file:
     no_match_file.write("#Non-Adaptive Configurations\n")
-
 # خواندن و نوشتن زمان آخرین به‌روزرسانی
 try:
     with open('./last update', 'r') as file:
