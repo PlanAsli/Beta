@@ -1,14 +1,29 @@
-trojan://5e2f888c-68ef-11ef-96ca-f23c9164ca5d@fc32160e-sw5og0-swy6li-tni2.cu.plebai.net:15229?allowInsecure=0#TROJAN | tcp | 🌐سرور 786 | Ord-21|  | China
-trojan://dca7cc60-1234-11f0-8a3f-1239d0255272@fr1.test3.net:443?security=tls&headerType=none&type=tcp#TROJAN | tcp | 🔥Join+Telegram:@Fara | France
-trojan://127c3420-2133-11f0-b720-1239d0255272@uk1.test3.net:443?security=tls&headerType=none&type=tcp#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
-trojan://ef23ddd0-14c5-39c2-9880-af55ce892363@t5.qifei.app:54860?security=tls&type=tcp&headerType=none#TROJAN | tcp | VL-0217-035 | Japan
-trojan://243eab52-9ac1-405c-887c-eb112c0985b8@sg02.trojanyyds.xyz:443?security=tls&amp;type=tcp&amp;headerType=none#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
-trojan://e6a2e741-0fce-440b-910c-b81325e2263a@bring-glove-shine.stark-industries.solutions:443?security=tls&path=%2Fvpnowl&headerType=none&type=tcp#TROJAN | tcp | 🌐سرور 1913 | Ord-21| | Unknown
-trojan://94614d84-9986-11ee-be7f-f23c9164ca5d@795f4c1e-sw3ts0-t7fl9b-1q16i.la3.tcpbbr.net:443?allowInsecure=0&sni=795f4c1e-sw3ts0-t7fl9b-1q16i.la3.tcpbbr.net#TROJAN | tcp | 🔥Join+Telegram:@Fara | United States
-trojan://%40NoForcedHeaven%40NoForcedHeaven%40NoForcedHeaven%40NoForcedHeaven%40NoForcedHeaven@ru2.asc-sam.ir:8443?security=tls&alpn=h3%2Ch2%2Chttp%2F1.1&host=ru2.asc-sam.ir&headerType=http&fp=random&type=tcp&sni=ru2.asc-sam.ir#TROJAN | tcp | 🌐سرور 597 | Ord-21|  | Russia
-trojan://s1G6gpTJG20X@tasnim.andishehnegariran.ir:2053?allowInsecure=0&sni=tasnim.andishehnegariran.ir&ws=1&wspath=%2F%F0%9F%86%94%40M3HDIO1#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
-trojan://4732adfa16c6450bbef87264e41332db@nextstepcareer.online:443?allowInsecure=1#TROJAN | tcp | [ | Germany
-trojan://60f6b4c4-9d70-11ed-a4d2-f23c9164ca5d@c6b50ea5-sw5og0-t1bnjq-1krtb.cu.plebai.net:15229?allowInsecure=0&sni=c6b50ea5-sw5og0-t1bnjq-1krtb.cu.plebai.net#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
-trojan://54231b3d-a39d-4769-a511-2a1c663a62b1@sg01.trojanyyds.xyz:443?allowInsecure=0&sni=sg01.trojanyyds.xyz#TROJAN | tcp | 🔥Join+Telegram:@Fara | Hong Kong
-trojan://5e2ce79c-170e-484a-8802-40584a1a3a12@naiu-us.05vr9nyqg5.download:13020?security=tls&amp;sni=cloudflare.node-ssl.cdn-alibaba.com&amp;type=tcp&amp;headerType=none#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
-trojan://xxoo@us.blazeppn.info:443?security=tls&sni=us.blazeppn.info#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
+trojan://94614d84-9986-11ee-be7f-f23c9164ca5d@795f4c1e-sw3ts0-t7fl9b-1q16i.la3.tcpbbr.net:443?security=tls&sni=795f4c1e-sw3ts0-t7fl9b-1q16i.la3.tcpbbr.net#TROJAN | TCP | United States | Server 4492
+trojan://1ae2e460-1af4-11f0-a5a4-1239d0255272@uk1.test3.net:443?security=tls&amp;headerType=none&amp;type=tcp#TROJAN | TCP | Unknown | Server 4646
+trojan://80e11690-29cc-11f0-bfc7-1239d0255272@fr1.test3.net:443?security=tls&headerType=none&type=tcp#TROJAN | TCP | France | Server 4682
+trojan://243eab52-9ac1-405c-887c-eb112c0985b8@sg02.trojanyyds.xyz:443?security=tls&amp;type=tcp&amp;headerType=none#TROJAN | TCP | Unknown | Server 1195
+trojan://5e2f888c-68ef-11ef-96ca-f23c9164ca5d@fc32160e-sw5og0-swy6li-tni2.cu.plebai.net:15229?allowInsecure=0&sni=fc32160e-sw5og0-swy6li-tni2.cu.plebai.net#TROJAN | TCP | China | Server 4597
+trojan://60f6b4c4-9d70-11ed-a4d2-f23c9164ca5d@c6b50ea5-sw5og0-t1bnjq-1krtb.cu.plebai.net:15229?allowInsecure=0&sni=c6b50ea5-sw5og0-t1bnjq-1krtb.cu.plebai.net#TROJAN | TCP | Unknown | Server 3892
+trojan://2c605663-b89a-5734-a9d6-97d4743d72cf@dozo01.flztjc.top:8313?allowInsecure=1&sni=dozo01.flztjc.top#TROJAN | TCP | China | Server 2813
+trojan://poTB9j1n12Tq@tasnim.andishehnegariran.ir:2053?allowInsecure=0&amp;sni=tasnim.andishehnegariran.ir&amp;ws=1&amp;wspath=%2F%F0%9F%86%94%40M3HDIO1#TROJAN | TCP | Unknown | Server 4474
+trojan://3482c71a-d01c-4ae5-b454-fa8cb3785f66@guy-trace-lyric.stark-industries.solutions:443?allowInsecure=0#TROJAN | TCP | Unknown | Server 4455
+trojan://1PvCIrxP6l@ru2.asc-sam.ir:8443?type=tcp&path=%2F%40NoForcedHeavan%40NoForcedHeavan%40NoForcedHeavan%40NoForcedHeavan%40NoForcedHeavan&host=ru2.asc-sam.ir&headerType=http&security=tls&fp=random&alpn=h3%2Ch2%2Chttp%2F1.1&sni=ru2.asc-sam.ir#TROJAN | TCP | Russia | Server 4393
+trojan://a38c9e28-9960-4e31-9f18-ed2495a756aa@vt-bana2-cn-11.ghpgwqswodgzv.com:40021?allowInsecure=0&sni=vt-bana2-cn-11.ghpgwqswodgzv.com&ws=1&wspath=%2Fdl_media#TROJAN | TCP | Unknown | Server 4445
+trojan://ef23ddd0-14c5-39c2-9880-af55ce892363@t2.qifei.app:59623?security=tls&type=tcp&headerType=none#TROJAN | TCP | Hong Kong | Server 969
+trojan://V_kT5VVzTK4gfCCxQipNAA@server2.cactusrobot.ir:8608?security=none&amp;headerType=http&amp;type=tcp#TROJAN | TCP | Unknown | Server 1086
+trojan://4ea1d07c-41c2-42b5-954d-414fee051856@df.xiguajiasu.xyz:46002#TROJAN | TCP | Japan | Server 2680
+trojan://54231b3d-a39d-4769-a511-2a1c663a62b1@sg01.trojanyyds.xyz:443?security=tls&sni=sg01.trojanyyds.xyz#TROJAN | TCP | Hong Kong | Server 2469
+trojan://dc15d997-8b26-4294-870e-c90a5784dca4@naiu-jp.05vr9nyqg5.download:13011?security=tls&amp;sni=cloudflare.node-ssl.cdn-alibaba.com&amp;type=tcp&amp;headerType=none#TROJAN | TCP | Unknown | Server 1818
+trojan://dQUWbcwECl@automq3-proxy.automq-sg.com:443?security=tls#TROJAN | TCP | Japan | Server 1947
+trojan://4732adfa16c6450bbef87264e41332db@nextstepcareer.online:443?allowInsecure=1#TROJAN | TCP | Germany | Server 3528
+trojan://65f14831-5c67-483f-9e85-f3aa73f21187@naiu-us.05vr9nyqg5.download:13019?security=tls&amp;sni=cloudflare.node-ssl.cdn-alibaba.com&amp;type=tcp&amp;headerType=none#TROJAN | TCP | Unknown | Server 2306
+trojan://6e1b9a65-884f-3aa9-9469-bf6ec0f08610@taifo01a.kbservice.club:443?allowInsecure=0&sni=45.32.28.232#TROJAN | TCP | Taiwan | Server 2841
+trojan://xxoo@us.blazeppn.info:443?security=tls&sni=us.blazeppn.info#TROJAN | TCP | Unknown | Server 2863
+trojan://zsu4Mq3A9J@uk-02.allhubb.info:8443?security=tls&sni=uk-02.allhubb.info&alpn=h3%2Ch2%2Chttp%2F1.1&type=tcp&headerType=none#TROJAN | TCP | France | Server 3136
+trojan://243eab52-9ac1-405c-887c-eb112c0985b8@hk03.trojanyyds.xyz:443?security=tls&amp;sni=hk03.trojanyyds.xyz&amp;type=tcp&amp;headerType=none#TROJAN | TCP | Singapore | Server 3304
+trojan://VMhGp5wEIyCDf90T@csuzhou01.1cooldns.com:42303?allowInsecure=0&sni=hk06.run.place#TROJAN | TCP | China | Server 3311
+trojan://74260667533381300@patient-emu.shiner427.skin:443?allowInsecure=0&sni=patient-emu.shiner427.skin#TROJAN | TCP | United Kingdom | Server 3733
+trojan://6e1b9a65-884f-3aa9-9469-bf6ec0f08610@a10.taipeicitygovernment.kyiv.ua:3462?allowInsecure=0&sni=45.32.28.232#TROJAN | TCP | China | Server 3428
+trojan://5e2ce79c-170e-484a-8802-40584a1a3a12@naiu-us.05vr9nyqg5.download:13020?security=tls&amp;sni=cloudflare.node-ssl.cdn-alibaba.com&amp;type=tcp&amp;headerType=none#TROJAN | TCP | Unknown | Server 3445
+trojan://5af7fa3a-ad9c-4346-ba7f-184e89c91758@lm.kaiqsz.com:51075?security=tls&amp;sni=mmbiz10.redapricotcloud.com&amp;type=tcp&amp;headerType=none#TROJAN | TCP | China | Server 3595
+trojan://ef23ddd0-14c5-39c2-9880-af55ce892363@t5.qifei.app:54860?security=tls&type=tcp&headerType=none#TROJAN | TCP | Japan | Server 3723
