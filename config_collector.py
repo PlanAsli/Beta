@@ -37,7 +37,7 @@ GEOIP_DB = "geoip-lite/GeoLite2-Country.mmdb"
 UPDATE_INTERVAL = 21600
 COMMON_PORTS = [80, 443, 2052, 2053, 2095, 2096, 8080, 8443, 8880, 10000]
 
-# کش برای DNS و GeoIP
+# کش
 CACHE_DIR = "cache"
 os.makedirs(CACHE_DIR, exist_ok=True)
 DNS_CACHE_FILE = os.path.join(CACHE_DIR, "dns_cache.pkl")
@@ -47,7 +47,6 @@ IPINFO_TOKEN = os.getenv("IPINFO_TOKEN")
 dns_cache = {}
 geoip_cache = {}
 
-# بارگذاری کش
 def load_cache():
     global dns_cache, geoip_cache
     try:
@@ -61,7 +60,6 @@ def load_cache():
     except Exception as e:
         logging.error(f"Error loading cache: {e}")
 
-# ذخیره کش
 def save_cache():
     try:
         with open(DNS_CACHE_FILE, "wb") as f:
@@ -86,15 +84,15 @@ country_map = {
     "default": "Unknown"
 }
 
-# کانال‌های تلگرام (کامل)
+# کانال‌های تلگرام
 TELEGRAM_CHANNELS = [
     "activevshop", "airdroplandcod", "alfred_config", "alienvpn402", "alo_v2rayng",
     "alpha_v2ray_fazayi", "amirinventor2010", "amironetwork", "ana_service", "angus_vpn",
-    # ... (برای کوتاه شدن، بقیه 700+ کانال رو اینجا ننوشتم، ولی همون لیست قبلیه)
+    # ... (لیست کامل 700+ کانال)
     "zyfxlnn"
 ]
 
-# منابع خارجی
+# منابع خارجی (بدون Space-00)
 EXTERNAL_SOURCES = [
     {"url": "https://raw.githubusercontent.com/arshiacomplus/v2rayExtractor/refs/heads/main/mix/sub.html", "type": "html", "name": "ArshiaComPlus HTML"},
     {"url": "https://raw.githubusercontent.com/Kwinshadow/TelegramV2rayCollector/refs/heads/main/sublinks/mix.txt", "type": "text", "name": "Kwinshadow Mix"},
@@ -116,7 +114,6 @@ EXTERNAL_SOURCES = [
     {"url": "https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/python/hysteria", "type": "text", "name": "Surfboard Hysteria"},
     {"url": "https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/splitted/vless", "type": "text", "name": "Surfboard Vless"},
     {"url": "https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/splitted/vmess", "type": "text", "name": "Surfboard Vmess"},
-    {"url": "https://raw.githubusercontent.com/Space-00/V2ray-configs/refs/heads/main/config.txt", "type": "text", "name": "Space-00 Configs"},
     {"url": "https://raw.githubusercontent.com/Surfboardv2ray/Proxy-sorter/main/custom/udp.txt", "type": "text", "name": "Surfboard UDP"},
     {"url": "https://raw.githubusercontent.com/Surfboardv2ray/Proxy-sorter/main/ws_tls/proxies/wstls", "type": "text", "name": "Surfboard WSTLS"},
     {"url": "https://raw.githubusercontent.com/Surfboardv2ray/Proxy-sorter/main/selector/random", "type": "text", "name": "Surfboard Random"},
@@ -175,27 +172,28 @@ def resolve_domain(domain):
         ip = answers[0].to_text()
         dns_cache[domain] = ip
         return ip
-    except:
+    except Exception as e:
+        logging.warning(f"DNS resolve failed for {domain}: {e}")
         dns_cache[domain] = domain
         return domain
 
 def get_ipinfo(ip):
     if ip in geoip_cache:
         return geoip_cache[ip]
-    # محدود کردن درخواست‌های API به 100 IP اول
-    if len(geoip_cache) < 100 and IPINFO_TOKEN:
+    if IPINFO_TOKEN:
         try:
-            url = f"https://ipinfo.io/{ip}/json?token={IPINFO_TOKEN}"
+            url = f"https://api.ipinfo.io/lite/{ip}?token={IPINFO_TOKEN}"
             response = requests.get(url, timeout=5)
             if response.status_code == 200:
                 data = response.json()
-                isp = data.get("org", isp_map["default"])
-                country = data.get("country", country_map["default"])
+                isp = data.get("as_name", isp_map["default"])
+                country = data.get("country_code", country_map["default"])
                 geoip_cache[ip] = {"isp": isp, "country": country}
                 return geoip_cache[ip]
-        except:
-            pass
-    # فال‌بک به GeoIP محلی یا دیکشنری
+            else:
+                logging.warning(f"IPinfo API failed for {ip}: {response.status_code}")
+        except Exception as e:
+            logging.error(f"IPinfo API error for {ip}: {e}")
     try:
         with geoip2.database.Reader(GEOIP_DB) as reader:
             response = reader.country(ip)
@@ -208,12 +206,7 @@ def get_ipinfo(ip):
 
 def validate_server(ip, port):
     is_open = check_port(ip, port)
-    if is_open:
-        return is_open, port
-    for p in COMMON_PORTS:
-        if p != port and check_port(ip, p):
-            return True, p
-    return False, port
+    return is_open, port
 
 def extract_configs(channel):
     configs = []
@@ -330,13 +323,22 @@ def remove_duplicates(configs):
     unique_configs = {}
     start_time = time.time()
     valid_configs = 0
-    for i, config in enumerate(configs[:5000]):  # محدود به 5000 برای تست
-        if i % 100 == 0 and i > 0:
-            logging.info(f"Processed {i}/{len(configs)} configs, valid: {valid_configs}, time: {time.time() - start_time:.2f}s")
-        if parsed := parse_and_enrich_config(config):
-            valid_configs += 1
-            key = f"{parsed['protocol']}-{parsed['ip']}:{parsed['port']}"
-            unique_configs[key] = parsed
+    
+    # فیلتر اولیه برای حذف تکراری‌های خام
+    configs = list(set(configs))
+    logging.info(f"After initial deduplication: {len(configs)} configs")
+    
+    # پردازش موازی
+    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+        future_to_config = {executor.submit(parse_and_enrich_config, config): config for config in configs[:5000]}
+        for i, future in enumerate(concurrent.futures.as_completed(future_to_config)):
+            if i % 100 == 0 and i > 0:
+                logging.info(f"Processed {i}/{len(configs[:5000])} configs, valid: {valid_configs}, time: {time.time() - start_time:.2f}s")
+            if parsed := future.result():
+                valid_configs += 1
+                key = f"{parsed['protocol']}-{parsed['ip']}:{parsed['port']}"
+                unique_configs[key] = parsed
+    
     logging.info(f"Removed duplicates: {len(unique_configs)} unique, {valid_configs} valid, total time: {time.time() - start_time:.2f}s")
     return list(unique_configs.values())
 
