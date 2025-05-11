@@ -640,3 +640,6 @@
 2025-05-11 08:08:28,121 - INFO - MainThread - Parsed configs: 304
 2025-05-11 08:08:28,128 - INFO - MainThread - Saved configs in 0.01 seconds
 2025-05-11 08:08:28,129 - INFO - MainThread - Generated README in 0.00 seconds
+2025-05-11 08:08:28,792 - INFO - MainThread - Successfully pushed to GitHub
+2025-05-11 08:08:28,792 - INFO - MainThread - Pushed to GitHub in 0.66 seconds
+2025-05-11 08:08:28,793 - INFO - MainThread - Saved cache: 2548 DNS, 192 GeoIP entries
