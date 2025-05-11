@@ -3,15 +3,15 @@
 🌐 Collects Vmess, Vless, Shadowsocks, Trojan, Reality, Hysteria, Tuic, and Juicity configurations from Telegram and external sources. Configurations are deduplicated and enriched with server details.
 
 ## 📊 Stats
-**Last Update**: 1404/02/21 08:08:28  
-**Total Configurations**: 304
+**Last Update**: 1404/02/21 08:09:41  
+**Total Configurations**: 314
 
 | Protocol | Count |
 |:--------:|:-----:|
 | Vmess | 0 |
-| Vless | 207 |
-| Trojan | 19 |
-| Ss | 78 |
+| Vless | 202 |
+| Trojan | 20 |
+| Ss | 92 |
 | Reality | 0 |
 | Hysteria | 0 |
 | Tuic | 0 |
@@ -56,14 +56,14 @@
 ## 📋 Protocol Subscription Links
 | Protocol | Network | Link | Count |
 |:--------:|:-------:|:----:|:-----:|
-| Vless | tcp | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/vless/tcp/open_configs.txt) | 49 |
-| Vless | ws | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/vless/ws/open_configs.txt) | 80 |
-| Vless | grpc | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/vless/grpc/open_configs.txt) | 55 |
+| Vless | tcp | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/vless/tcp/open_configs.txt) | 41 |
+| Vless | ws | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/vless/ws/open_configs.txt) | 74 |
+| Vless | grpc | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/vless/grpc/open_configs.txt) | 62 |
 | Trojan | tcp | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/trojan/tcp/open_configs.txt) | 15 |
-| Trojan | ws | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/trojan/ws/open_configs.txt) | 2 |
+| Trojan | ws | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/trojan/ws/open_configs.txt) | 4 |
 | Ss | tcp | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/ss/tcp/open_configs.txt) | 33 |
 | Ss | ws | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/ss/ws/open_configs.txt) | 24 |
-| Ss | grpc | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/ss/grpc/open_configs.txt) | 16 |
+| Ss | grpc | [Link](https://raw.githubusercontent.com/PlanAsli/Beta/main/configs/ss/grpc/open_configs.txt) | 25 |
 
 ## 🚀 How to Use
 1. Download a VPN client (e.g., [v2rayNG](https://github.com/2dust/v2rayNG)).

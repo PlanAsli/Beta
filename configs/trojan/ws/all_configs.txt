@@ -1,2 +1,4 @@
-trojan://bpb-trojan@japan.com:443/?type=ws&host=zamim340.ggff.net&path=%2Ftr%3Fed%3D2560&security=tls&sni=zamim340.ggff.net&allowInsecure=1#TROJAN | ws | [ | None
-trojan://aTArbZ2F0E@cloudgetservice.mcloudservice.site:443?sni=uSa-vp-27.bLAzECLOUD.SITE&amp;type=ws&amp;host=uSa-vp-27.bLAzECLOUD.SITE&amp;path=/linkvkws#TROJAN | ws | telegram | Unknown
+trojan://trojan@www.visa.com.sg:8443?allowInsecure=0&sni=store.timimi.dpdns.org&type=ws&path=/?ed=2560#TROJAN | ws | 🔥Join+Telegram:@Fara | None
+trojan://aTArbZ2F0E@cloudgetservice.mcloudservice.site:443?sni=uSa-vp-27.bLAzECLOUD.SITE&type=ws&host=uSa-vp-27.bLAzECLOUD.SITE&path=/linkvkws#TROJAN | ws | telegram 🌟 DailyV2ry | Unknown
+trojan://a38c9e28-9960-4e31-9f18-ed2495a756aa@vt-bana2-cn-11.ghpgwqswodgzv.com:40021?sni=vt-bana2-cn-11.ghpgwqswodgzv.com&type=ws&host=vt-bana2-cn-11.ghpgwqswodgzv.com&path=%2Fdl_media#TROJAN | ws | 🔥Join+Telegram:@Fara | Unknown
+trojan://bpb-trojan@www.vpslook.com:443?path=%2Ftr%3Fed%3D2560&amp;security=tls&amp;alpn=h3&amp;host=bpb-hd.aaronchin.xyz&amp;fp=randomized&amp;type=ws&amp;sni=bpb-hd.aaronchin.xyz#TROJAN | ws | 🔥Join+Telegram:@Fara | None
