@@ -110,3 +110,56 @@
 2025-05-11 08:03:46,676 - INFO - MainThread - Successfully pushed to GitHub
 2025-05-11 08:03:46,676 - INFO - MainThread - Pushed to GitHub in 0.49 seconds
 2025-05-11 08:03:46,676 - INFO - MainThread - Saved cache: 0 DNS, 0 GeoIP entries
+2025-05-11 08:04:01,193 - INFO - MainThread - Loaded cache: 0 DNS, 0 GeoIP entries
+2025-05-11 08:04:01,685 - INFO - ThreadPoolExecutor-0_0 - Extracted 0 configs from activevshop
+2025-05-11 08:04:01,737 - INFO - ThreadPoolExecutor-0_2 - Extracted 3 configs from alfred_config
+2025-05-11 08:04:01,827 - INFO - ThreadPoolExecutor-0_1 - Extracted 0 configs from airdroplandcod
+2025-05-11 08:04:02,137 - INFO - ThreadPoolExecutor-0_0 - Extracted 1 configs from alienvpn402
+2025-05-11 08:04:02,174 - INFO - ThreadPoolExecutor-0_2 - Extracted 6 configs from alo_v2rayng
+2025-05-11 08:04:02,176 - INFO - ThreadPoolExecutor-0_1 - Extracted 0 configs from alpha_v2ray_fazayi
+2025-05-11 08:04:02,596 - INFO - ThreadPoolExecutor-0_2 - Extracted 0 configs from amironetwork
+2025-05-11 08:04:02,637 - INFO - ThreadPoolExecutor-0_0 - Extracted 2 configs from amirinventor2010
+2025-05-11 08:04:02,685 - INFO - ThreadPoolExecutor-0_1 - Extracted 0 configs from ana_service
+2025-05-11 08:04:03,017 - INFO - ThreadPoolExecutor-0_2 - Extracted 4 configs from angus_vpn
+2025-05-11 08:04:03,155 - INFO - ThreadPoolExecutor-0_0 - Extracted 0 configs from zyfxlnn
+2025-05-11 08:04:03,181 - INFO - ThreadPoolExecutor-1_1 - Extracted 74 configs from Kwinshadow Mix
+2025-05-11 08:04:03,206 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from ArshiaComPlus HTML
+2025-05-11 08:04:03,233 - INFO - ThreadPoolExecutor-1_1 - Extracted 1953 configs from MiladTahanian Configs
+2025-05-11 08:04:03,235 - INFO - ThreadPoolExecutor-1_0 - Extracted 2 configs from Everyday VPN Main
+2025-05-11 08:04:03,276 - INFO - ThreadPoolExecutor-1_2 - Extracted 16364 configs from SoliSpirit Configs
+2025-05-11 08:04:03,286 - INFO - ThreadPoolExecutor-1_1 - Extracted 7 configs from Everyday VPN Test
+2025-05-11 08:04:03,301 - INFO - ThreadPoolExecutor-1_2 - Extracted 448 configs from Epodonios Vmess
+2025-05-11 08:04:03,317 - INFO - ThreadPoolExecutor-1_1 - Extracted 0 configs from Epodonios Trojan
+2025-05-11 08:04:03,324 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from Epodonios Vless
+2025-05-11 08:04:03,331 - INFO - ThreadPoolExecutor-1_2 - Extracted 0 configs from Epodonios SS
+2025-05-11 08:04:03,347 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from Qjlxg Socks
+2025-05-11 08:04:03,361 - INFO - ThreadPoolExecutor-1_2 - Extracted 0 configs from Qjlxg Trojan
+2025-05-11 08:04:03,372 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from Qjlxg Hy2
+2025-05-11 08:04:03,377 - INFO - ThreadPoolExecutor-1_1 - Extracted 0 configs from Qjlxg Vless
+2025-05-11 08:04:03,386 - INFO - ThreadPoolExecutor-1_2 - Extracted 0 configs from Qjlxg Hysteria
+2025-05-11 08:04:03,403 - INFO - ThreadPoolExecutor-1_1 - Extracted 0 configs from Surfboard Hysteria2
+2025-05-11 08:04:03,405 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from Surfboard Hy2
+2025-05-11 08:04:03,412 - INFO - ThreadPoolExecutor-1_2 - Extracted 4 configs from Surfboard Hysteria
+2025-05-11 08:04:03,429 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from Surfboard Vmess
+2025-05-11 08:04:03,433 - INFO - ThreadPoolExecutor-1_2 - Extracted 54 configs from Surfboard UDP
+2025-05-11 08:04:03,439 - INFO - ThreadPoolExecutor-1_1 - Extracted 0 configs from Surfboard Vless
+2025-05-11 08:04:03,455 - INFO - ThreadPoolExecutor-1_0 - Extracted 409 configs from Surfboard WSTLS
+2025-05-11 08:04:03,457 - INFO - ThreadPoolExecutor-1_2 - Extracted 100 configs from Surfboard Random
+2025-05-11 08:04:03,477 - INFO - ThreadPoolExecutor-1_1 - Extracted 3405 configs from Surfboard Converted
+2025-05-11 08:04:03,480 - INFO - ThreadPoolExecutor-1_0 - Extracted 185 configs from Surfboard Mahsa
+2025-05-11 08:04:03,484 - INFO - ThreadPoolExecutor-1_2 - Extracted 562 configs from MhdiTaheri Mix
+2025-05-11 08:04:03,502 - INFO - ThreadPoolExecutor-1_1 - Extracted 150 configs from Roosterkid V2RAY
+2025-05-11 08:04:03,507 - INFO - ThreadPoolExecutor-1_2 - Extracted 0 configs from ALIILAPRO Sub
+2025-05-11 08:04:03,514 - INFO - ThreadPoolExecutor-1_0 - Extracted 2098 configs from MhdiTaheri Sub Mix
+2025-05-11 08:04:03,523 - INFO - ThreadPoolExecutor-1_1 - Extracted 75 configs from Ashkan-m Sub
+2025-05-11 08:04:03,529 - INFO - ThreadPoolExecutor-1_2 - Extracted 77 configs from MrMohebi Actives
+2025-05-11 08:04:03,536 - INFO - ThreadPoolExecutor-1_0 - Extracted 279 configs from MrMohebi All
+2025-05-11 08:04:03,536 - INFO - MainThread - Raw configs: 26262
+2025-05-11 08:04:03,537 - INFO - MainThread - Collected raw configs in 2.34 seconds
+2025-05-11 08:04:03,545 - INFO - MainThread - After initial deduplication: 25015 configs
+2025-05-11 08:04:03,607 - INFO - MainThread - After validity filter: 0 configs
+2025-05-11 08:04:03,607 - INFO - MainThread - Removed duplicates: 0 unique, 0 valid, total time: 0.07s
+2025-05-11 08:04:03,607 - INFO - MainThread - Parsed and deduplicated in 0.07 seconds
+2025-05-11 08:04:03,607 - INFO - MainThread - Parsed configs: 0
+2025-05-11 08:04:03,609 - INFO - MainThread - Saved configs in 0.00 seconds
+2025-05-11 08:04:03,609 - INFO - MainThread - Generated README in 0.00 seconds
