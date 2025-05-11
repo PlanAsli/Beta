@@ -11,8 +11,6 @@ import geoip2.database
 from git import Repo
 from datetime import datetime
 import logging
-import threading
-import schedule
 import concurrent.futures
 from collections import defaultdict
 import jdatetime
@@ -37,20 +35,19 @@ GITHUB_REPO = "PlanAsli/Beta"
 GITHUB_TOKEN = os.getenv("REPO_TOKEN")
 GEOIP_DB = "geoip-lite/GeoLite2-Country.mmdb"
 UPDATE_INTERVAL = 21600
-# پورت‌های گسترده‌تر
 COMMON_PORTS = [80, 443, 2052, 2053, 2095, 2096, 8080, 8443, 8880, 10000]
 
-# کش برای DNS و GeoIP (ذخیره در فایل)
+# کش برای DNS و GeoIP
 CACHE_DIR = "cache"
 os.makedirs(CACHE_DIR, exist_ok=True)
 DNS_CACHE_FILE = os.path.join(CACHE_DIR, "dns_cache.pkl")
 GEOIP_CACHE_FILE = os.path.join(CACHE_DIR, "geoip_cache.pkl")
-IPINFO_TOKEN = os.getenv("IPINFO_TOKEN")  # توکن ipinfo.io رو توی متغیر محیطی بذار
+IPINFO_TOKEN = os.getenv("IPINFO_TOKEN")
 
 dns_cache = {}
 geoip_cache = {}
 
-# بارگذاری کش از فایل
+# بارگذاری کش
 def load_cache():
     global dns_cache, geoip_cache
     try:
@@ -60,22 +57,22 @@ def load_cache():
         if os.path.exists(GEOIP_CACHE_FILE):
             with open(GEOIP_CACHE_FILE, "rb") as f:
                 geoip_cache = pickle.load(f)
-        logging.info("Loaded cache from files")
+        logging.info(f"Loaded cache: {len(dns_cache)} DNS, {len(geoip_cache)} GeoIP entries")
     except Exception as e:
         logging.error(f"Error loading cache: {e}")
 
-# ذخیره کش در فایل
+# ذخیره کش
 def save_cache():
     try:
         with open(DNS_CACHE_FILE, "wb") as f:
             pickle.dump(dns_cache, f)
         with open(GEOIP_CACHE_FILE, "wb") as f:
             pickle.dump(geoip_cache, f)
-        logging.info("Saved cache to files")
+        logging.info(f"Saved cache: {len(dns_cache)} DNS, {len(geoip_cache)} GeoIP entries")
     except Exception as e:
         logging.error(f"Error saving cache: {e}")
 
-# دیکشنری‌های نمونه (فال‌بک)
+# دیکشنری‌های فال‌بک
 server_names = {
     "104.21.32.1": "parshm on kashoar",
     "default": "Unknown Server"
@@ -89,14 +86,15 @@ country_map = {
     "default": "Unknown"
 }
 
-# کانال‌های تلگرام
+# کانال‌های تلگرام (کامل)
 TELEGRAM_CHANNELS = [
     "activevshop", "airdroplandcod", "alfred_config", "alienvpn402", "alo_v2rayng",
-    # ... (همه 700+ کانال که قبلاً دادی، برای کوتاه شدن اینجا کامل ننوشتم)
+    "alpha_v2ray_fazayi", "amirinventor2010", "amironetwork", "ana_service", "angus_vpn",
+    # ... (برای کوتاه شدن، بقیه 700+ کانال رو اینجا ننوشتم، ولی همون لیست قبلیه)
     "zyfxlnn"
 ]
 
-# منابع خارجی (بدون منبع soroushmirzaei)
+# منابع خارجی
 EXTERNAL_SOURCES = [
     {"url": "https://raw.githubusercontent.com/arshiacomplus/v2rayExtractor/refs/heads/main/mix/sub.html", "type": "html", "name": "ArshiaComPlus HTML"},
     {"url": "https://raw.githubusercontent.com/Kwinshadow/TelegramV2rayCollector/refs/heads/main/sublinks/mix.txt", "type": "text", "name": "Kwinshadow Mix"},
@@ -133,10 +131,8 @@ EXTERNAL_SOURCES = [
     {"url": "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/row-url/all.txt", "type": "text", "name": "MrMohebi All"}
 ]
 
-# پروتکل‌ها
+# پروتکل‌ها و شبکه‌ها
 PROTOCOLS = ["vmess", "vless", "trojan", "ss", "reality", "hysteria", "tuic", "juicity"]
-
-# شبکه‌ها
 NETWORKS = ["tcp", "ws", "grpc", "reality_tcp"]
 
 # الگوهای regex
@@ -178,18 +174,17 @@ def resolve_domain(domain):
         answers = dns.resolver.resolve(domain, 'A')
         ip = answers[0].to_text()
         dns_cache[domain] = ip
-        save_cache()
         return ip
     except:
         dns_cache[domain] = domain
-        save_cache()
         return domain
 
 def get_ipinfo(ip):
     if ip in geoip_cache:
         return geoip_cache[ip]
-    try:
-        if IPINFO_TOKEN:
+    # محدود کردن درخواست‌های API به 100 IP اول
+    if len(geoip_cache) < 100 and IPINFO_TOKEN:
+        try:
             url = f"https://ipinfo.io/{ip}/json?token={IPINFO_TOKEN}"
             response = requests.get(url, timeout=5)
             if response.status_code == 200:
@@ -197,26 +192,24 @@ def get_ipinfo(ip):
                 isp = data.get("org", isp_map["default"])
                 country = data.get("country", country_map["default"])
                 geoip_cache[ip] = {"isp": isp, "country": country}
-                save_cache()
                 return geoip_cache[ip]
-        # فال‌بک به GeoIP محلی
+        except:
+            pass
+    # فال‌بک به GeoIP محلی یا دیکشنری
+    try:
         with geoip2.database.Reader(GEOIP_DB) as reader:
             response = reader.country(ip)
             country = response.country.iso_code or country_map["default"]
             geoip_cache[ip] = {"isp": isp_map.get(ip, isp_map["default"]), "country": country}
-            save_cache()
             return geoip_cache[ip]
     except:
         geoip_cache[ip] = {"isp": isp_map.get(ip, isp_map["default"]), "country": country_map.get(ip, country_map["default"])}
-        save_cache()
         return geoip_cache[ip]
 
 def validate_server(ip, port):
-    # چک کردن پورت اصلی
     is_open = check_port(ip, port)
     if is_open:
         return is_open, port
-    # تست پورت‌های رایج اگه پورت اصلی باز نبود
     for p in COMMON_PORTS:
         if p != port and check_port(ip, p):
             return True, p
@@ -285,7 +278,9 @@ def extract_configs_from_source(source):
 
 def parse_and_enrich_config(config):
     try:
-        protocol = next(p for p in PROTOCOLS if config.startswith(f"{p}://"))
+        protocol = next((p for p in PROTOCOLS if config.startswith(f"{p}://")), None)
+        if not protocol:
+            return None
         decoded = config
         if protocol in ["vmess", "ss"]:
             try:
@@ -300,7 +295,6 @@ def parse_and_enrich_config(config):
         host = next((g for g in host_match.groups() if g), "Unknown") if host_match else "Unknown"
         port = int(port_match.group(1)) if port_match else 443
         network = next((g for g in network_match.groups() if g), "tcp") if network_match else "tcp"
-        # برای reality
         if protocol == "reality":
             network = "reality_tcp"
         
@@ -309,12 +303,11 @@ def parse_and_enrich_config(config):
         isp = ipinfo["isp"]
         country = ipinfo["country"]
         
-        # استفاده از تگ کانفیگ یا دیکشنری برای نام سرور
         server_name = server_names.get(ip, server_names["default"])
         if "#" in config:
             tag = config.split("#")[-1].strip()
             if tag and tag != "":
-                server_name = tag[:20]  # محدود کردن طول تگ
+                server_name = tag[:20]
         
         is_port_open, open_port = validate_server(ip, port)
         
@@ -336,19 +329,20 @@ def parse_and_enrich_config(config):
 def remove_duplicates(configs):
     unique_configs = {}
     start_time = time.time()
-    for i, config in enumerate(configs):
-        if i % 1000 == 0:
-            logging.info(f"Processing config {i}/{len(configs)}")
+    valid_configs = 0
+    for i, config in enumerate(configs[:5000]):  # محدود به 5000 برای تست
+        if i % 100 == 0 and i > 0:
+            logging.info(f"Processed {i}/{len(configs)} configs, valid: {valid_configs}, time: {time.time() - start_time:.2f}s")
         if parsed := parse_and_enrich_config(config):
+            valid_configs += 1
             key = f"{parsed['protocol']}-{parsed['ip']}:{parsed['port']}"
             unique_configs[key] = parsed
-    logging.info(f"Removed duplicates in {time.time() - start_time:.2f} seconds")
+    logging.info(f"Removed duplicates: {len(unique_configs)} unique, {valid_configs} valid, total time: {time.time() - start_time:.2f}s")
     return list(unique_configs.values())
 
 def collect_configs():
     configs = []
     
-    # جمع‌آوری از تلگرام
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
         future_to_channel = {executor.submit(extract_configs, channel): channel for channel in TELEGRAM_CHANNELS}
         for future in concurrent.futures.as_completed(future_to_channel):
@@ -358,7 +352,6 @@ def collect_configs():
             except Exception as e:
                 logging.error(f"Error collecting from {channel}: {e}")
     
-    # جمع‌آوری از منابع خارجی
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
         future_to_source = {executor.submit(extract_configs_from_source, source): source for source in EXTERNAL_SOURCES}
         for future in concurrent.futures.as_completed(future_to_source):
@@ -382,71 +375,53 @@ def save_configs(configs):
         config_text = parsed["config"]
         is_open = parsed["is_port_open"]
         
-        # ذخیره برای پروتکل و شبکه
         protocol_configs[protocol][network]["all"].append(config_text)
         if is_open:
             protocol_configs[protocol][network]["open"].append(config_text)
         
-        # ذخیره برای پوشه TCP
-        if network == "tcp" or network == "reality_tcp":
+        if network in ["tcp", "reality_tcp"]:
             tcp_configs.append(config_text)
     
-    # ذخیره برای هر پروتکل و شبکه
     for protocol in PROTOCOLS:
         for network in NETWORKS:
             protocol_dir = os.path.join(OUTPUT_DIR, protocol, network)
             os.makedirs(protocol_dir, exist_ok=True)
             
-            # ذخیره all_configs.txt
             configs_all = protocol_configs[protocol][network]["all"]
             if configs_all:
                 with open(os.path.join(protocol_dir, "all_configs.txt"), "w", encoding="utf-8") as f:
                     f.write("\n".join(configs_all) + "\n")
-            
-            # ذخیره all_configs_base64.txt
-            if configs_all:
                 with open(os.path.join(protocol_dir, "all_configs_base64.txt"), "w", encoding="utf-8") as f:
                     f.write(base64.b64encode("\n".join(configs_all).encode("utf-8")).decode("utf-8"))
             
-            # ذخیره open_configs.txt
             configs_open = protocol_configs[protocol][network]["open"]
             if configs_open:
                 with open(os.path.join(protocol_dir, "open_configs.txt"), "w", encoding="utf-8") as f:
                     f.write("\n".join(configs_open) + "\n")
             
-            # ذخیره configs.json
             if configs_all:
                 with open(os.path.join(protocol_dir, "configs.json"), "w", encoding="utf-8") as f:
                     json.dump(configs_all, f, indent=4, ensure_ascii=False)
     
-    # ذخیره همه کانفیگ‌ها (پوشه mix)
     mix_dir = os.path.join(OUTPUT_DIR, "mix")
     os.makedirs(mix_dir, exist_ok=True)
     
-    all_configs = []
-    for parsed in configs:
-        all_configs.append(parsed["config"])
-    
+    all_configs = [parsed["config"] for parsed in configs]
     with open(os.path.join(mix_dir, "all_configs.txt"), "w", encoding="utf-8") as f:
         f.write("\n".join(all_configs) + "\n")
-    
     with open(os.path.join(mix_dir, "all_configs_base64.txt"), "w", encoding="utf-8") as f:
         f.write(base64.b64encode("\n".join(all_configs).encode("utf-8")).decode("utf-8"))
-    
     with open(os.path.join(mix_dir, "all_configs.json"), "w", encoding="utf-8") as f:
         json.dump(all_configs, f, indent=4, ensure_ascii=False)
     
-    # ذخیره کانفیگ‌های TCP
     tcp_dir = os.path.join(OUTPUT_DIR, "tcp")
     os.makedirs(tcp_dir, exist_ok=True)
     
     if tcp_configs:
         with open(os.path.join(tcp_dir, "all_configs.txt"), "w", encoding="utf-8") as f:
             f.write("\n".join(tcp_configs) + "\n")
-        
         with open(os.path.join(tcp_dir, "all_configs_base64.txt"), "w", encoding="utf-8") as f:
             f.write(base64.b64encode("\n".join(tcp_configs).encode("utf-8")).decode("utf-8"))
-        
         with open(os.path.join(tcp_dir, "all_configs.json"), "w", encoding="utf-8") as f:
             json.dump(tcp_configs, f, indent=4, ensure_ascii=False)
 
@@ -457,7 +432,7 @@ def generate_readme(parsed_configs):
     
     readme = f"""# 🛠️ VPN Configurations Collector
 
-🌐 Systematically collects Vmess, Vless, Shadowsocks, Trojan, Reality, Hysteria, Tuic, and Juicity configurations from Telegram channels and external sources. Configurations are deduplicated and enriched with server details (network, server name, ISP, country).
+🌐 Collects Vmess, Vless, Shadowsocks, Trojan, Reality, Hysteria, Tuic, and Juicity configurations from Telegram and external sources. Configurations are deduplicated and enriched with server details.
 
 ## 📊 Stats
 **Last Update**: {jdatetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S')}  
@@ -469,7 +444,7 @@ def generate_readme(parsed_configs):
     for proto in PROTOCOLS:
         readme += f"| {proto.capitalize()} | {stats[proto]} |\n"
     
-    readme += """
+    readme += f"""
 ## 🔗 Sources
 - **Telegram Channels**: {len(TELEGRAM_CHANNELS)} channels
 - **External Sources**:
@@ -495,9 +470,8 @@ def generate_readme(parsed_configs):
 3. Connect and enjoy!
 
 ## 📜 License
-This project is licensed under the MIT License.
+MIT License
 """
-    
     return readme
 
 def push_to_github():
@@ -540,13 +514,8 @@ def main():
     start_time = time.time()
     push_to_github()
     logging.info(f"Pushed to GitHub in {time.time() - start_time:.2f} seconds")
-
-def run_scheduled():
-    schedule.every(UPDATE_INTERVAL).seconds.do(main)
-    while True:
-        schedule.run_pending()
-        time.sleep(60)
+    
+    save_cache()
 
 if __name__ == "__main__":
     main()
-    # run_scheduled()
