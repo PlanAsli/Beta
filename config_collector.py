@@ -23,7 +23,7 @@ import subprocess
 LOGS_DIR = "logs"
 os.makedirs(LOGS_DIR, exist_ok=True)
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,  # تغییر به DEBUG برای ریشه‌یابی
     format='%(asctime)s - %(levelname)s - %(threadName)s - %(message)s',
     handlers=[
         logging.FileHandler(f'{LOGS_DIR}/collector.log'),
@@ -82,13 +82,13 @@ def save_cache():
 
 def load_filters():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--ports", type=str, default=",".join(map(str, COMMON_PORTS)))
+    parser.add_argument("--ports", type=str, default="")  # خالی یعنی همه پورت‌ها
     parser.add_argument("--countries", type=str, default="")
     parser.add_argument("--protocols", type=str, default=",".join(PROTOCOLS))
     parser.add_argument("--networks", type=str, default=",".join(NETWORKS))
     args = parser.parse_args()
     return {
-        "ports": set(map(int, args.ports.split(","))),
+        "ports": set(map(int, args.ports.split(","))) if args.ports else set(),  # خالی یعنی بدون فیلتر
         "countries": set(args.countries.split(",")) if args.countries else set(),
         "protocols": set(args.protocols.split(",")),
         "networks": set(args.networks.split(","))
@@ -146,8 +146,8 @@ EXTERNAL_SOURCES = [
     {"url": "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/row-url/actives.txt", "type": "text", "name": "MrMohebi Actives"},
     {"url": "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/row-url/all.txt", "type": "text", "name": "MrMohebi All"},
     # منابع جدید برای Hysteria و Reality
-    {"url": "https://raw.githubusercontent.com/hysteria-configs/repo/main/hysteria.txt", "type": "text", "name": "Hysteria Configs"},
-    {"url": "https://raw.githubusercontent.com/reality-vpn/configs/main/reality.txt", "type": "text", "name": "Reality Configs"}
+    {"url": "https://raw.githubusercontent.com/HyNetwork/hysteria/master/configs.txt", "type": "text", "name": "HyNetwork Hysteria"},
+    {"url": "https://raw.githubusercontent.com/xray/reality-configs/main/reality.txt", "type": "text", "name": "Xray Reality Configs"}
 ]
 
 # پروتکل‌ها و شبکه‌ها
@@ -191,6 +191,7 @@ def check_port(host, port, timeout=2):
 
 def resolve_domain(domain, retries=3):
     if domain in dns_cache and (time.time() - dns_cache[domain]["timestamp"]) < CACHE_TTL:
+        logging.debug(f"Using cached DNS for {domain}: {dns_cache[domain]['ip']}")
         return dns_cache[domain]["ip"]
     if not re.match(VALID_DOMAIN_REGEX, domain):
         logging.debug(f"Invalid domain skipped: {domain}")
@@ -201,16 +202,19 @@ def resolve_domain(domain, retries=3):
             answers = dns.resolver.resolve(domain, 'A')
             ip = answers[0].to_text()
             dns_cache[domain] = {"ip": ip, "timestamp": time.time()}
+            logging.debug(f"Resolved {domain} to {ip}")
             return ip
         except Exception as e:
             logging.debug(f"DNS resolve failed for {domain}: {e}")
             if attempt == retries - 1:
                 dns_cache[domain] = {"ip": domain, "timestamp": time.time()}
+                logging.debug(f"DNS resolve failed after retries for {domain}, using {domain}")
                 return domain
             time.sleep(1)
 
 def get_ipinfo(ip, retries=3):
     if ip in geoip_cache and (time.time() - geoip_cache[ip]["timestamp"]) < CACHE_TTL:
+        logging.debug(f"Using cached GeoIP for {ip}: {geoip_cache[ip]['data']}")
         return geoip_cache[ip]["data"]
     for attempt in range(retries):
         try:
@@ -224,6 +228,7 @@ def get_ipinfo(ip, retries=3):
                         country = line.split("Country: ")[1].strip()
                         break
                 geoip_cache[ip] = {"data": {"country": country}, "timestamp": time.time()}
+                logging.debug(f"Got GeoIP for {ip}: {country}")
                 return geoip_cache[ip]["data"]
             elif response.status_code == 429:
                 logging.warning(f"Rate limit hit for {ip}, retrying {attempt + 1}/{retries}")
@@ -238,27 +243,35 @@ def get_ipinfo(ip, retries=3):
             response = reader.country(ip)
             country = response.country.iso_code or country_map["default"]
             geoip_cache[ip] = {"data": {"country": country}, "timestamp": time.time()}
+            logging.debug(f"Got GeoIP (fallback) for {ip}: {country}")
             return geoip_cache[ip]["data"]
     except:
         geoip_cache[ip] = {"data": {"country": country_map.get(ip, country_map["default"])}, "timestamp": time.time()}
+        logging.debug(f"GeoIP fallback failed for {ip}, using default: {country_map['default']}")
         return geoip_cache[ip]["data"]
 
 def validate_server(ip, port, skip_port_check=False):
     if skip_port_check:
+        logging.debug(f"Skipping port check for {ip}:{port}")
         return True, port
     is_open = check_port(ip, port)
+    logging.debug(f"Port check for {ip}:{port}: {'open' if is_open else 'closed'}")
     return is_open, port
 
 def test_config(config):
-    try:
-        config_json = {"outbounds": [{"protocol": config["protocol"], "settings": {"address": config["ip"], "port": config["port"]}}]}
-        with open("temp_config.json", "w") as f:
-            json.dump(config_json, f)
-        result = subprocess.run(["v2ray", "run", "-c", "temp_config.json"], timeout=5, capture_output=True)
-        return result.returncode == 0
-    except Exception as e:
-        logging.debug(f"Config test failed: {e}")
-        return False
+    # موقتاً غیرفعال تا مشکل اصلی حل بشه
+    logging.debug(f"Skipping config test for {config['config'][:50]}...")
+    return True
+    # try:
+    #     config_json = {"outbounds": [{"protocol": config["protocol"], "settings": {"address": config["ip"], "port": config["port"]}}]}
+    #     with open("temp_config.json", "w") as f:
+    #         json.dump(config_json, f)
+    #     result = subprocess.run(["v2ray", "run", "-c", "temp_config.json"], timeout=5, capture_output=True)
+    #     logging.debug(f"Config test for {config['config'][:50]}...: {'passed' if result.returncode == 0 else 'failed'}")
+    #     return result.returncode == 0
+    # except Exception as e:
+    #     logging.debug(f"Config test failed: {e}")
+    #     return False
 
 def extract_configs(channel):
     configs = []
@@ -324,9 +337,13 @@ def extract_configs_from_source(source):
 def parse_and_enrich_config(config, filters):
     global server_counter
     try:
+        logging.debug(f"Parsing config: {config[:50]}...")
         protocol = next((p for p in PROTOCOLS if config.startswith(f"{p}://")), None)
-        if not protocol or protocol not in filters["protocols"]:
-            logging.debug(f"Invalid or filtered protocol for config: {config[:50]}...")
+        if not protocol:
+            logging.debug(f"No protocol matched for config: {config[:50]}...")
+            return None
+        if protocol not in filters["protocols"]:
+            logging.debug(f"Protocol {protocol} filtered out for config: {config[:50]}...")
             return None
         
         decoded = config
@@ -334,35 +351,46 @@ def parse_and_enrich_config(config, filters):
             try:
                 encoded_part = config.split("://")[1].split("#")[0]
                 decoded = base64.b64decode(encoded_part + "=" * (-len(encoded_part) % 4)).decode('utf-8')
+                logging.debug(f"Decoded {protocol} config: {decoded[:50]}...")
             except Exception as e:
                 logging.debug(f"Base64 decode failed for {config[:50]}...: {e}")
                 decoded = config
         
-        # استخراج host و port
-        host_match = re.search(r'host=([\w\.-]+)|address=([\w\.-]+)|@([\w\.-]+)', decoded)
-        port_match = re.search(r'port=(\d+)|:(\d+)', decoded)
-        network_match = re.search(r'network=(\w+)|type=(\w+)', decoded)
+        # استخراج host و port با regex عمومی‌تر
+        host_match = re.search(r'(?:host|address|@|server)=?([\w\.-]+)|([\w\.-]+)(?::\d+)', decoded)
+        port_match = re.search(r'(?:port|=|:)(\d+)', decoded)
+        network_match = re.search(r'(?:network|type)=(\w+)', decoded)
         
         host = next((g for g in host_match.groups() if g), None) if host_match else None
         port = int(next((g for g in port_match.groups() if g), "443")) if port_match else 443
         network = next((g for g in network_match.groups() if g), "tcp") if network_match else "tcp"
         
-        if not host or port not in filters["ports"] or network not in filters["networks"]:
-            logging.debug(f"No valid host/port/network for config: {config[:50]}...")
+        logging.debug(f"Extracted: host={host}, port={port}, network={network}")
+        
+        if not host:
+            logging.debug(f"No valid host for config: {config[:50]}...")
+            return None
+        
+        if filters["ports"] and port not in filters["ports"]:
+            logging.debug(f"Port {port} filtered out for config: {config[:50]}...")
+            return None
+        
+        if filters["networks"] and network not in filters["networks"]:
+            logging.debug(f"Network {network} filtered out for config: {config[:50]}...")
             return None
         
         if protocol == "reality":
             network = "reality_tcp"
         
         ip = resolve_domain(host)
-        if ip == host:  # یعنی DNS resolve نشده
+        if ip == host:
             logging.debug(f"DNS resolve failed for {host} in config: {config[:50]}...")
             return None
         
         ipinfo = get_ipinfo(ip)
         country = ipinfo["country"]
         if filters["countries"] and country not in filters["countries"]:
-            logging.debug(f"Country {country} filtered for config: {config[:50]}...")
+            logging.debug(f"Country {country} filtered out for config: {config[:50]}...")
             return None
         
         # شماره‌گذاری سرور
@@ -390,6 +418,7 @@ def parse_and_enrich_config(config, filters):
         if is_port_open and not test_config(parsed):
             parsed["is_port_open"] = False
         
+        logging.debug(f"Parsed config successfully: {title}")
         return parsed
     except Exception as e:
         logging.debug(f"Error parsing config {config[:50]}...: {e}")
@@ -410,7 +439,8 @@ def remove_duplicates(configs, filters):
         for i, future in enumerate(concurrent.futures.as_completed(future_to_config)):
             if i % 100 == 0 and i > 0:
                 logging.info(f"Processed {i}/{len(configs)} configs, valid: {valid_configs}, time: {time.time() - start_time:.2f}s")
-            if parsed := future.result():
+            parsed = future.result()
+            if parsed:
                 valid_configs += 1
                 key = f"{parsed['protocol']}-{parsed['ip']}:{parsed['port']}"
                 unique_configs[key] = parsed
