@@ -1164,3 +1164,104 @@
 2025-05-11 08:14:15,101 - INFO - MainThread - Successfully pushed to GitHub
 2025-05-11 08:14:15,101 - INFO - MainThread - Pushed to GitHub in 0.89 seconds
 2025-05-11 08:14:15,102 - INFO - MainThread - Saved cache: 6346 DNS, 317 GeoIP entries
+2025-05-11 08:14:29,007 - INFO - MainThread - Loaded cache: 6346 DNS, 317 GeoIP entries
+2025-05-11 08:14:29,409 - INFO - ThreadPoolExecutor-0_0 - Extracted 0 configs from activevshop
+2025-05-11 08:14:29,464 - INFO - ThreadPoolExecutor-0_2 - Extracted 3 configs from alfred_config
+2025-05-11 08:14:29,528 - INFO - ThreadPoolExecutor-0_1 - Extracted 0 configs from airdroplandcod
+2025-05-11 08:14:29,826 - INFO - ThreadPoolExecutor-0_0 - Extracted 1 configs from alienvpn402
+2025-05-11 08:14:29,834 - INFO - ThreadPoolExecutor-0_1 - Extracted 0 configs from alpha_v2ray_fazayi
+2025-05-11 08:14:29,881 - INFO - ThreadPoolExecutor-0_2 - Extracted 6 configs from alo_v2rayng
+2025-05-11 08:14:30,281 - INFO - ThreadPoolExecutor-0_1 - Extracted 0 configs from amironetwork
+2025-05-11 08:14:30,323 - INFO - ThreadPoolExecutor-0_0 - Extracted 2 configs from amirinventor2010
+2025-05-11 08:14:30,369 - INFO - ThreadPoolExecutor-0_2 - Extracted 0 configs from ana_service
+2025-05-11 08:14:30,699 - INFO - ThreadPoolExecutor-0_1 - Extracted 4 configs from angus_vpn
+2025-05-11 08:14:30,802 - INFO - ThreadPoolExecutor-0_0 - Extracted 0 configs from zyfxlnn
+2025-05-11 08:14:30,829 - INFO - ThreadPoolExecutor-1_1 - Extracted 74 configs from Kwinshadow Mix
+2025-05-11 08:14:30,849 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from ArshiaComPlus HTML
+2025-05-11 08:14:30,902 - INFO - ThreadPoolExecutor-1_2 - Extracted 16364 configs from SoliSpirit Configs
+2025-05-11 08:14:30,902 - INFO - ThreadPoolExecutor-1_0 - Extracted 2 configs from Everyday VPN Main
+2025-05-11 08:14:30,912 - INFO - ThreadPoolExecutor-1_1 - Extracted 1953 configs from MiladTahanian Configs
+2025-05-11 08:14:30,927 - INFO - ThreadPoolExecutor-1_0 - Extracted 7 configs from Everyday VPN Test
+2025-05-11 08:14:30,938 - INFO - ThreadPoolExecutor-1_1 - Extracted 448 configs from Epodonios Vmess
+2025-05-11 08:14:30,951 - INFO - ThreadPoolExecutor-1_2 - Extracted 0 configs from Epodonios Vless
+2025-05-11 08:14:30,957 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from Epodonios Trojan
+2025-05-11 08:14:30,967 - INFO - ThreadPoolExecutor-1_1 - Extracted 0 configs from Epodonios SS
+2025-05-11 08:14:30,978 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from Qjlxg Socks
+2025-05-11 08:14:30,991 - INFO - ThreadPoolExecutor-1_1 - Extracted 0 configs from Qjlxg Trojan
+2025-05-11 08:14:31,000 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from Qjlxg Hy2
+2025-05-11 08:14:31,005 - INFO - ThreadPoolExecutor-1_2 - Extracted 0 configs from Qjlxg Vless
+2025-05-11 08:14:31,014 - INFO - ThreadPoolExecutor-1_1 - Extracted 0 configs from Qjlxg Hysteria
+2025-05-11 08:14:31,025 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from Surfboard Hy2
+2025-05-11 08:14:31,027 - INFO - ThreadPoolExecutor-1_2 - Extracted 0 configs from Surfboard Hysteria2
+2025-05-11 08:14:31,035 - INFO - ThreadPoolExecutor-1_1 - Extracted 4 configs from Surfboard Hysteria
+2025-05-11 08:14:31,050 - INFO - ThreadPoolExecutor-1_2 - Extracted 0 configs from Surfboard Vmess
+2025-05-11 08:14:31,058 - INFO - ThreadPoolExecutor-1_1 - Extracted 54 configs from Surfboard UDP
+2025-05-11 08:14:31,064 - INFO - ThreadPoolExecutor-1_0 - Extracted 0 configs from Surfboard Vless
+2025-05-11 08:14:31,074 - INFO - ThreadPoolExecutor-1_2 - Extracted 409 configs from Surfboard WSTLS
+2025-05-11 08:14:31,082 - INFO - ThreadPoolExecutor-1_1 - Extracted 100 configs from Surfboard Random
+2025-05-11 08:14:31,096 - INFO - ThreadPoolExecutor-1_2 - Extracted 185 configs from Surfboard Mahsa
+2025-05-11 08:14:31,106 - INFO - ThreadPoolExecutor-1_0 - Extracted 3405 configs from Surfboard Converted
+2025-05-11 08:14:31,110 - INFO - ThreadPoolExecutor-1_1 - Extracted 562 configs from MhdiTaheri Mix
+2025-05-11 08:14:31,121 - INFO - ThreadPoolExecutor-1_2 - Extracted 150 configs from Roosterkid V2RAY
+2025-05-11 08:14:31,132 - INFO - ThreadPoolExecutor-1_1 - Extracted 0 configs from ALIILAPRO Sub
+2025-05-11 08:14:31,139 - INFO - ThreadPoolExecutor-1_0 - Extracted 2098 configs from MhdiTaheri Sub Mix
+2025-05-11 08:14:31,150 - INFO - ThreadPoolExecutor-1_2 - Extracted 75 configs from Ashkan-m Sub
+2025-05-11 08:14:31,154 - INFO - ThreadPoolExecutor-1_1 - Extracted 77 configs from MrMohebi Actives
+2025-05-11 08:14:31,161 - INFO - ThreadPoolExecutor-1_0 - Extracted 279 configs from MrMohebi All
+2025-05-11 08:14:31,161 - INFO - MainThread - Raw configs: 26262
+2025-05-11 08:14:31,161 - INFO - MainThread - Collected raw configs in 2.15 seconds
+2025-05-11 08:14:31,170 - INFO - MainThread - After initial deduplication: 25015 configs
+2025-05-11 08:14:31,617 - INFO - MainThread - Processed 100/5000 configs, valid: 12, time: 0.46s
+2025-05-11 08:14:33,497 - INFO - MainThread - Processed 200/5000 configs, valid: 35, time: 2.34s
+2025-05-11 08:14:35,377 - INFO - MainThread - Processed 300/5000 configs, valid: 55, time: 4.22s
+2025-05-11 08:14:35,902 - INFO - MainThread - Processed 400/5000 configs, valid: 80, time: 4.74s
+2025-05-11 08:14:37,765 - INFO - MainThread - Processed 500/5000 configs, valid: 103, time: 6.60s
+2025-05-11 08:14:37,969 - INFO - MainThread - Processed 600/5000 configs, valid: 124, time: 6.81s
+2025-05-11 08:14:38,273 - INFO - MainThread - Processed 700/5000 configs, valid: 144, time: 7.11s
+2025-05-11 08:14:39,977 - INFO - MainThread - Processed 800/5000 configs, valid: 161, time: 8.82s
+2025-05-11 08:14:40,665 - INFO - MainThread - Processed 900/5000 configs, valid: 181, time: 9.50s
+2025-05-11 08:14:41,369 - INFO - MainThread - Processed 1000/5000 configs, valid: 203, time: 10.21s
+2025-05-11 08:14:42,041 - INFO - MainThread - Processed 1100/5000 configs, valid: 225, time: 10.88s
+2025-05-11 08:14:43,036 - INFO - MainThread - Processed 1200/5000 configs, valid: 251, time: 11.87s
+2025-05-11 08:14:44,296 - INFO - MainThread - Processed 1300/5000 configs, valid: 272, time: 13.13s
+2025-05-11 08:14:45,055 - INFO - MainThread - Processed 1400/5000 configs, valid: 296, time: 13.89s
+2025-05-11 08:14:45,676 - INFO - MainThread - Processed 1500/5000 configs, valid: 316, time: 14.51s
+2025-05-11 08:14:48,299 - INFO - MainThread - Processed 1600/5000 configs, valid: 340, time: 17.14s
+2025-05-11 08:14:49,295 - INFO - MainThread - Processed 1700/5000 configs, valid: 358, time: 18.13s
+2025-05-11 08:14:49,765 - INFO - MainThread - Processed 1800/5000 configs, valid: 379, time: 18.60s
+2025-05-11 08:14:50,168 - INFO - MainThread - Processed 1900/5000 configs, valid: 388, time: 19.01s
+2025-05-11 08:14:50,729 - INFO - MainThread - Processed 2000/5000 configs, valid: 407, time: 19.57s
+2025-05-11 08:14:51,449 - INFO - MainThread - Processed 2100/5000 configs, valid: 432, time: 20.29s
+2025-05-11 08:14:53,074 - INFO - MainThread - Processed 2200/5000 configs, valid: 457, time: 21.91s
+2025-05-11 08:14:53,374 - INFO - MainThread - Processed 2300/5000 configs, valid: 477, time: 22.21s
+2025-05-11 08:14:54,043 - INFO - MainThread - Processed 2400/5000 configs, valid: 502, time: 22.88s
+2025-05-11 08:14:55,615 - INFO - MainThread - Processed 2500/5000 configs, valid: 524, time: 24.45s
+2025-05-11 08:14:57,585 - INFO - MainThread - Processed 2600/5000 configs, valid: 543, time: 26.42s
+2025-05-11 08:14:58,578 - INFO - MainThread - Processed 2700/5000 configs, valid: 563, time: 27.42s
+2025-05-11 08:15:00,218 - INFO - MainThread - Processed 2800/5000 configs, valid: 579, time: 29.06s
+2025-05-11 08:15:01,881 - INFO - MainThread - Processed 2900/5000 configs, valid: 601, time: 30.72s
+2025-05-11 08:15:02,588 - INFO - MainThread - Processed 3000/5000 configs, valid: 616, time: 31.43s
+2025-05-11 08:15:03,749 - INFO - MainThread - Processed 3100/5000 configs, valid: 642, time: 32.59s
+2025-05-11 08:15:04,292 - INFO - MainThread - Processed 3200/5000 configs, valid: 658, time: 33.13s
+2025-05-11 08:15:05,222 - INFO - MainThread - Processed 3300/5000 configs, valid: 677, time: 34.06s
+2025-05-11 08:15:07,426 - INFO - MainThread - Processed 3400/5000 configs, valid: 702, time: 36.26s
+2025-05-11 08:15:08,446 - INFO - MainThread - Processed 3500/5000 configs, valid: 728, time: 37.28s
+2025-05-11 08:15:08,641 - INFO - MainThread - Processed 3600/5000 configs, valid: 741, time: 37.48s
+2025-05-11 08:15:08,943 - INFO - MainThread - Processed 3700/5000 configs, valid: 762, time: 37.78s
+2025-05-11 08:15:09,510 - INFO - MainThread - Processed 3800/5000 configs, valid: 780, time: 38.35s
+2025-05-11 08:15:10,259 - INFO - MainThread - Processed 3900/5000 configs, valid: 801, time: 39.10s
+2025-05-11 08:15:10,690 - INFO - MainThread - Processed 4000/5000 configs, valid: 815, time: 39.53s
+2025-05-11 08:15:12,260 - INFO - MainThread - Processed 4100/5000 configs, valid: 829, time: 41.10s
+2025-05-11 08:15:12,733 - INFO - MainThread - Processed 4200/5000 configs, valid: 845, time: 41.57s
+2025-05-11 08:15:13,042 - INFO - MainThread - Processed 4300/5000 configs, valid: 867, time: 41.88s
+2025-05-11 08:15:13,476 - INFO - MainThread - Processed 4400/5000 configs, valid: 884, time: 42.32s
+2025-05-11 08:15:14,835 - INFO - MainThread - Processed 4500/5000 configs, valid: 902, time: 43.67s
+2025-05-11 08:15:15,196 - INFO - MainThread - Processed 4600/5000 configs, valid: 915, time: 44.03s
+2025-05-11 08:15:17,207 - INFO - MainThread - Processed 4700/5000 configs, valid: 935, time: 46.05s
+2025-05-11 08:15:17,410 - INFO - MainThread - Processed 4800/5000 configs, valid: 952, time: 46.25s
+2025-05-11 08:15:19,372 - INFO - MainThread - Processed 4900/5000 configs, valid: 973, time: 48.21s
+2025-05-11 08:15:20,053 - INFO - MainThread - Removed duplicates: 326 unique, 985 valid, total time: 48.89s
+2025-05-11 08:15:20,056 - INFO - MainThread - Parsed and deduplicated in 48.89 seconds
+2025-05-11 08:15:20,056 - INFO - MainThread - Parsed configs: 326
+2025-05-11 08:15:20,065 - INFO - MainThread - Saved configs in 0.01 seconds
+2025-05-11 08:15:20,066 - INFO - MainThread - Generated README in 0.00 seconds

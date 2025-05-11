@@ -1,10 +1,14 @@
-trojan://43b5b200-1af3-11f0-a7e8-1239d0255272@fr1.test3.net:443?security=tls&headerType=none&type=tcp#TROJAN | tcp | 🔥Join+Telegram:@Fara | France
-trojan://1ae2e460-1af4-11f0-a5a4-1239d0255272@uk1.test3.net:443?security=tls&headerType=none&type=tcp#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
-trojan://%40NoForcedHeaven%40NoForcedHeaven%40NoForcedHeaven%40NoForcedHeaven%40NoForcedHeaven@ru2.asc-sam.ir:8443?security=tls&alpn=h3%2Ch2%2Chttp%2F1.1&host=ru2.asc-sam.ir&headerType=http&fp=random&type=tcp&sni=ru2.asc-sam.ir#TROJAN | tcp | 🌐سرور 597 | Ord-21|  | Russia
-trojan://3482c71a-d01c-4ae5-b454-fa8cb3785f66@guy-trace-lyric.stark-industries.solutions:443?security=tls&headerType=none&type=tcp#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
-trojan://5e2ce79c-170e-484a-8802-40584a1a3a12@naiu-us.05vr9nyqg5.download:13020?security=tls&amp;sni=cloudflare.node-ssl.cdn-alibaba.com&amp;type=tcp&amp;headerType=none#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
+trojan://5e2f888c-68ef-11ef-96ca-f23c9164ca5d@fc32160e-sw5og0-swy6li-tni2.cu.plebai.net:15229?allowInsecure=0#TROJAN | tcp | 🌐سرور 786 | Ord-21|  | China
+trojan://dca7cc60-1234-11f0-8a3f-1239d0255272@fr1.test3.net:443?security=tls&headerType=none&type=tcp#TROJAN | tcp | 🔥Join+Telegram:@Fara | France
+trojan://127c3420-2133-11f0-b720-1239d0255272@uk1.test3.net:443?security=tls&headerType=none&type=tcp#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
 trojan://ef23ddd0-14c5-39c2-9880-af55ce892363@t5.qifei.app:54860?security=tls&type=tcp&headerType=none#TROJAN | tcp | VL-0217-035 | Japan
-trojan://dQUWbcwECl@automq3-proxy.automq-sg.com:443?security=tls#TROJAN | tcp | 🔥Join+Telegram:@Fara | Japan
-trojan://54231b3d-a39d-4769-a511-2a1c663a62b1@sg01.trojanyyds.xyz:443?security=tls&sni=sg01.trojanyyds.xyz#TROJAN | tcp | 🔥Join+Telegram:@Fara | Hong Kong
 trojan://243eab52-9ac1-405c-887c-eb112c0985b8@sg02.trojanyyds.xyz:443?security=tls&amp;type=tcp&amp;headerType=none#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
-trojan://5e2f888c-68ef-11ef-96ca-f23c9164ca5d@fc32160e-sw5og0-swy6li-tni2.cu.plebai.net:15229?allowInsecure=0&sni=fc32160e-sw5og0-swy6li-tni2.cu.plebai.net#TROJAN | tcp | 🔥Join+Telegram:@Fara | China
+trojan://e6a2e741-0fce-440b-910c-b81325e2263a@bring-glove-shine.stark-industries.solutions:443?security=tls&path=%2Fvpnowl&headerType=none&type=tcp#TROJAN | tcp | 🌐سرور 1913 | Ord-21| | Unknown
+trojan://94614d84-9986-11ee-be7f-f23c9164ca5d@795f4c1e-sw3ts0-t7fl9b-1q16i.la3.tcpbbr.net:443?allowInsecure=0&sni=795f4c1e-sw3ts0-t7fl9b-1q16i.la3.tcpbbr.net#TROJAN | tcp | 🔥Join+Telegram:@Fara | United States
+trojan://%40NoForcedHeaven%40NoForcedHeaven%40NoForcedHeaven%40NoForcedHeaven%40NoForcedHeaven@ru2.asc-sam.ir:8443?security=tls&alpn=h3%2Ch2%2Chttp%2F1.1&host=ru2.asc-sam.ir&headerType=http&fp=random&type=tcp&sni=ru2.asc-sam.ir#TROJAN | tcp | 🌐سرور 597 | Ord-21|  | Russia
+trojan://s1G6gpTJG20X@tasnim.andishehnegariran.ir:2053?allowInsecure=0&sni=tasnim.andishehnegariran.ir&ws=1&wspath=%2F%F0%9F%86%94%40M3HDIO1#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
+trojan://4732adfa16c6450bbef87264e41332db@nextstepcareer.online:443?allowInsecure=1#TROJAN | tcp | [ | Germany
+trojan://60f6b4c4-9d70-11ed-a4d2-f23c9164ca5d@c6b50ea5-sw5og0-t1bnjq-1krtb.cu.plebai.net:15229?allowInsecure=0&sni=c6b50ea5-sw5og0-t1bnjq-1krtb.cu.plebai.net#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
+trojan://54231b3d-a39d-4769-a511-2a1c663a62b1@sg01.trojanyyds.xyz:443?allowInsecure=0&sni=sg01.trojanyyds.xyz#TROJAN | tcp | 🔥Join+Telegram:@Fara | Hong Kong
+trojan://5e2ce79c-170e-484a-8802-40584a1a3a12@naiu-us.05vr9nyqg5.download:13020?security=tls&amp;sni=cloudflare.node-ssl.cdn-alibaba.com&amp;type=tcp&amp;headerType=none#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
+trojan://xxoo@us.blazeppn.info:443?security=tls&sni=us.blazeppn.info#TROJAN | tcp | 🔥Join+Telegram:@Fara | Unknown
